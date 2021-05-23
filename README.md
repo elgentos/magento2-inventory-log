@@ -14,7 +14,9 @@ This extension was originally written by [KiwiCommerce](https://kiwicommerce.co.
 	- Credit Memo generation
 	- Order fail and Cancel
 	
-## **Installation**
+## Installation
+
+This extension has been tested on Magento 2.1.x, 2.2.x, 2.3.x and 2.4.x.
  
 ```
 composer require elgentos/magento2-inventory-log
