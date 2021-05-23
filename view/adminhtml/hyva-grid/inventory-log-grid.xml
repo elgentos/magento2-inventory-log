@@ -2,7 +2,10 @@
 <grid xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:module:Hyva_Admin:etc/hyva-grid.xsd">
     <source>
-        <repositoryListMethod>\Elgentos\InventoryLog\Api\MovementRepositoryInterface::getList</repositoryListMethod>
+        <collection>\Elgentos\InventoryLog\Model\ResourceModel\Movement\Collection</collection>
+        <processors>
+            <processor class="\Elgentos\InventoryLog\HyvaGridProcessor\MovementCollectionProcessor"/>
+        </processors>
     </source>
     <columns>
         <exclude>
@@ -14,7 +17,8 @@
             <column name="movement_id" initiallyHidden="true" />
             <column name="stock_item_id" initiallyHidden="true" />
             <column name="created_at" />
-            <column name="product_id" template="Elgentos_InventoryLog::product.phtml" />
+            <column name="product_id" initiallyHidden="true" template="Elgentos_InventoryLog::productId.phtml" />
+            <column name="sku" type="string" template="Elgentos_InventoryLog::sku.phtml" />
             <column name="user_id" template="Elgentos_InventoryLog::userId.phtml"/>
             <column name="username" template="Elgentos_InventoryLog::username.phtml"/>
             <column name="is_admin" />

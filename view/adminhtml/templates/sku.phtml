@@ -1,0 +1,7 @@
+<?php $sku = $cell->getRawValue(); ?>
+<?php $productId = $cell->getRow()->getCell('product_id')->getRawValue(); ?>
+<?php if ($productId): ?>
+    <a href="<?=$this->getUrl('catalog/product/edit', ['id' => $productId]); ?>"><?=$sku;?></a>
+<?php else: ?>
+    <?=$sku;?>
+<?php endif; ?>

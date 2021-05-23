@@ -232,6 +232,7 @@ class MovementRepository implements MovementRepositoryInterface
                 );
             }
         }
+
         $collection->setCurPage($criteria->getCurrentPage());
         $collection->setPageSize($criteria->getPageSize());
 
