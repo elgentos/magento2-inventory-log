@@ -17,6 +17,7 @@ namespace Elgentos\InventoryLog\Model;
 
 use Elgentos\InventoryLog\Api\MovementRepositoryInterface;
 use Elgentos\InventoryLog\Api\Data\MovementSearchResultsInterfaceFactory;
+use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Elgentos\InventoryLog\Model\ResourceModel\Movement as ResourceMovement;
 use Magento\Framework\Api\SortOrder;
@@ -104,7 +105,8 @@ class MovementRepository implements MovementRepositoryInterface
         DataObjectProcessor $dataObjectProcessor,
         StoreManagerInterface $storeManager,
         MovementHelper $movementHelper,
-        \Magento\Framework\App\ProductMetadataInterface $productMetadata
+        \Magento\Framework\App\ProductMetadataInterface $productMetadata,
+        CollectionProcessorInterface $collectionProcessor
     ) {
         $this->resource = $resource;
         $this->movementFactory = $movementFactory;
@@ -116,6 +118,7 @@ class MovementRepository implements MovementRepositoryInterface
         $this->storeManager = $storeManager;
         $this->movementHelper = $movementHelper;
         $this->productMetadata = $productMetadata;
+        $this->collectionProcessor = $collectionProcessor;
     }
 
     /**
@@ -211,6 +214,7 @@ class MovementRepository implements MovementRepositoryInterface
         \Magento\Framework\Api\SearchCriteriaInterface $criteria
     ) {
         $collection = $this->movementCollectionFactory->create();
+        $this->collectionProcessor->process($criteria, $collection);
         foreach ($criteria->getFilterGroups() as $filterGroup) {
             foreach ($filterGroup->getFilters() as $filter) {
                 $condition = $filter->getConditionType() ?: 'eq';
