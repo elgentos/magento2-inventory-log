@@ -15,27 +15,6 @@
 -->
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <fieldset name="product-details">
-        <!--<container name="stock_movement_button">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="title" xsi:type="string" translate="true">Add Stock Movement</item>
-                    <item name="component" xsi:type="string">Magento_Ui/js/form/components/button</item>
-                    <item name="displayAsLink" xsi:type="string">true</item>
-                    <item name="actions" xsi:type="array">
-                        <item name="0" xsi:type="array">
-                            <item name="targetName" xsi:type="string">product_form.product_form.product-details.stockmovementmodel</item>
-                            <item name="actionName" xsi:type="string">toggleModal</item>
-                        </item>
-                        <item name="1" xsi:type="array">
-                            <item name="targetName" xsi:type="string">product_form.product_form.product-details.stockmovementmodel.stock_movement_listing</item>
-                            <item name="actionName" xsi:type="string">render</item>
-                        </item>
-                    </item>
-                    <item name="provider" xsi:type="boolean">false</item>
-                </item>
-            </argument>
-        </container>-->
-
         <modal name ="stockmovementmodel">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -54,29 +33,9 @@
                     </item>
                 </item>
             </argument>
-            <insertListing name="stock_movement_listing">
-                <argument name="data" xsi:type="array">
-                    <item name="config" xsi:type="array">
-                        <item name="autoRender" xsi:type="boolean">false</item>
-                        <item name="dataScope" xsi:type="string">stock_movement_listing</item>
-                        <item name="externalProvider" xsi:type="string">stock_movement_listing.stock_movement_listing_data_source</item>
-                        <item name="selectionsProvider" xsi:type="string">stock_movement_listing.stock_movement_listing.stock_movement_columns.ids</item>
-                        <item name="ns" xsi:type="string">stock_movement_listing</item>
-                        <item name="render_url" xsi:type="url" path="mui/index/render" />
-                        <item name="realTimeLink" xsi:type="boolean">true</item>
-                        <item name="dataLinks" xsi:type="array">
-                            <item name="imports" xsi:type="boolean">false</item>
-                            <item name="exports" xsi:type="boolean">true</item>
-                        </item>
-                        <!--<item name="exports" xsi:type="array">
-                            <item name="productId" xsi:type="boolean">${ $.externalProvider }:params.current_product_id</item>
-                        </item>-->
-                        <item name="behaviourType" xsi:type="string">simple</item>
-                        <item name="externalFilterMode" xsi:type="boolean">true</item>
-                        <item name="component" xsi:type="string">Magento_Ui/js/form/components/insert-listing</item>
-                    </item>
-                </argument>
-            </insertListing>
+            <htmlContent name="inventory-log-grid">
+                <block class="Hyva\Admin\Block\Adminhtml\HyvaGrid" name="inventory-log-grid" />
+            </htmlContent>
         </modal>
     </fieldset>
 </form>

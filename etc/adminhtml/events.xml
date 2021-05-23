@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="hyva_grid_source_prefetch_inventory_log_grid">
+        <observer name="elgentos_inventorylog_hyva_grid_source_prefetch_inventory_log_grid" instance="\Elgentos\InventoryLog\Observer\Backend\Hyva\GridSourcePrefetchInventoryLogGrid"/>
+    </event>
+</config>

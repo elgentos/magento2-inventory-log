@@ -26,6 +26,22 @@
         </include>
     </columns>
     <navigation>
+        <filters>
+            <filter column="ip"  />
+            <filter column="ukey"  />
+            <filter column="movement_id" />
+            <filter column="stock_item_id" />
+            <filter column="created_at" />
+            <filter column="product_id" />
+            <filter column="user_id" />
+            <filter column="username" />
+            <filter column="is_admin" />
+            <filter column="current_qty" />
+            <filter column="qty_movement" />
+            <filter column="old_qty" />
+            <filter column="is_in_stock" />
+            <filter column="message" />
+        </filters>
         <pager>
             <defaultPageSize>100</defaultPageSize>
             <pageSizes>50,100,250,500</pageSizes>
