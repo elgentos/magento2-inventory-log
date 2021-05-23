@@ -1,8 +1,3 @@
-<!---
-    To maintain an effective issue workflow and make sure issues will be solved in a timely manner we kindly ask reporters to follow some guidelines.
-
-    Please have a look at our guidelines article before adding a new issue https://kiwicommerce.co.uk/docs/issue_reporting_guidelines/
--->
 ### Title
 <!--
 A title should contain a clear, brief explanation of the issue, making emphasis on the most important points.
