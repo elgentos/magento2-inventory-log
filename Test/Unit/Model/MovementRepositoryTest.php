@@ -7,21 +7,21 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 KiwiCommerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
-namespace KiwiCommerce\InventoryLog\Test\Unit\Model;
+namespace Elgentos\InventoryLog\Test\Unit\Model;
 
-use KiwiCommerce\InventoryLog\Model\MovementRepository;
+use Elgentos\InventoryLog\Model\MovementRepository;
 
 /**
- * Test for KiwiCommerce\InventoryLog\Model\MovementRepository
+ * Test for Elgentos\InventoryLog\Model\MovementRepository
  */
 class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\KiwiCommerce\InventoryLog\Model\ResourceModel\Movement
+     * @var \PHPUnit_Framework_MockObject_MockObject|\Elgentos\InventoryLog\Model\ResourceModel\Movement
      */
     public $movementResource;
 
@@ -41,32 +41,32 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
     public $storeManager;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\KiwiCommerce\InventoryLog\Helper\Data
+     * @var \PHPUnit_Framework_MockObject_MockObject|\Elgentos\InventoryLog\Helper\Data
      */
     public $movementDataHelper;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\KiwiCommerce\InventoryLog\Model\Movement
+     * @var \PHPUnit_Framework_MockObject_MockObject|\Elgentos\InventoryLog\Model\Movement
      */
     public $movement;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @var \PHPUnit_Framework_MockObject_MockObject|\Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public $movementData;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\KiwiCommerce\InventoryLog\Model\ResourceModel\Movement\CollectionFactory
+     * @var \PHPUnit_Framework_MockObject_MockObject|\Elgentos\InventoryLog\Model\ResourceModel\Movement\CollectionFactory
      */
     public $collectionFactory;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\KiwiCommerce\InventoryLog\Api\Data\MovementSearchResultsInterface
+     * @var \PHPUnit_Framework_MockObject_MockObject|\Elgentos\InventoryLog\Api\Data\MovementSearchResultsInterface
      */
     public $movementSearchResult;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\KiwiCommerce\InventoryLog\Model\ResourceModel\Movement\Collection
+     * @var \PHPUnit_Framework_MockObject_MockObject|\Elgentos\InventoryLog\Model\ResourceModel\Movement\Collection
      */
     public $collection;
 
@@ -76,17 +76,17 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
     public $stockItemMock;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\KiwiCommerce\InventoryLog\Model\MovementRepository
+     * @var \PHPUnit_Framework_MockObject_MockObject|\Elgentos\InventoryLog\Model\MovementRepository
      */
     public $movementRepositoryMock;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\KiwiCommerce\InventoryLog\Model\MovementFactory
+     * @var \PHPUnit_Framework_MockObject_MockObject|\Elgentos\InventoryLog\Model\MovementFactory
      */
     public $movementFactory;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\KiwiCommerce\InventoryLog\Model\MovementRepository
+     * @var \PHPUnit_Framework_MockObject_MockObject|\Elgentos\InventoryLog\Model\MovementRepository
      */
     public $repository;
 
@@ -95,26 +95,26 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
      */
     protected function setUp()
     {
-        $this->movementResource = $this->getMockBuilder('KiwiCommerce\InventoryLog\Model\ResourceModel\Movement')
+        $this->movementResource = $this->getMockBuilder('Elgentos\InventoryLog\Model\ResourceModel\Movement')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->movementFactory = $this->getMockBuilder('KiwiCommerce\InventoryLog\Model\MovementFactory')
-            ->disableOriginalConstructor()
-            ->setMethods(['create'])
-            ->getMock();
-
-        $movementDataFactory = $this->getMockBuilder('KiwiCommerce\InventoryLog\Api\Data\MovementInterfaceFactory')
+        $this->movementFactory = $this->getMockBuilder('Elgentos\InventoryLog\Model\MovementFactory')
             ->disableOriginalConstructor()
             ->setMethods(['create'])
             ->getMock();
 
-        $collectionFactory = $this->getMockBuilder('KiwiCommerce\InventoryLog\Model\ResourceModel\Movement\CollectionFactory')
+        $movementDataFactory = $this->getMockBuilder('Elgentos\InventoryLog\Api\Data\MovementInterfaceFactory')
             ->disableOriginalConstructor()
             ->setMethods(['create'])
             ->getMock();
 
-        $movementSearchResultsInterfaceFactory = $this->getMockBuilder('KiwiCommerce\InventoryLog\Api\Data\MovementSearchResultsInterfaceFactory')
+        $collectionFactory = $this->getMockBuilder('Elgentos\InventoryLog\Model\ResourceModel\Movement\CollectionFactory')
+            ->disableOriginalConstructor()
+            ->setMethods(['create'])
+            ->getMock();
+
+        $movementSearchResultsInterfaceFactory = $this->getMockBuilder('Elgentos\InventoryLog\Api\Data\MovementSearchResultsInterfaceFactory')
             ->disableOriginalConstructor()
             ->setMethods(['create'])
             ->getMock();
@@ -131,7 +131,7 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->movementDataHelper = $this->getMockBuilder('KiwiCommerce\InventoryLog\Helper\Data')
+        $this->movementDataHelper = $this->getMockBuilder('Elgentos\InventoryLog\Helper\Data')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -141,11 +141,11 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
         $store->expects($this->any())->method('getId')->willReturn(0);
         $this->storeManager->expects($this->any())->method('getStore')->willReturn($store);
 
-        $this->movement = $this->getMockBuilder('KiwiCommerce\InventoryLog\Model\Movement')
+        $this->movement = $this->getMockBuilder('Elgentos\InventoryLog\Model\Movement')
                             ->disableOriginalConstructor()
                             ->getMock();
         
-        $this->movementData = $this->getMockBuilder('KiwiCommerce\InventoryLog\Api\Data\MovementInterface')
+        $this->movementData = $this->getMockBuilder('Elgentos\InventoryLog\Api\Data\MovementInterface')
                                 ->disableOriginalConstructor()
                                 ->getMock();
 
@@ -214,10 +214,10 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
             )
             ->getMock();
 
-        $this->movementSearchResult = $this->getMockBuilder('KiwiCommerce\InventoryLog\Api\Data\MovementSearchResultsInterface')
+        $this->movementSearchResult = $this->getMockBuilder('Elgentos\InventoryLog\Api\Data\MovementSearchResultsInterface')
             ->getMock();
 
-        $this->collection = $this->getMockBuilder('KiwiCommerce\InventoryLog\Model\ResourceModel\Movement\Collection')
+        $this->collection = $this->getMockBuilder('Elgentos\InventoryLog\Model\ResourceModel\Movement\Collection')
             ->disableOriginalConstructor()
             ->setMethods(['addFieldToFilter', 'getSize', 'setCurPage', 'setPageSize', 'load', 'addOrder'])
             ->getMock();
@@ -242,7 +242,7 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->movementRepositoryMock = $this->getMockBuilder('KiwiCommerce\InventoryLog\Model\MovementRepository')
+        $this->movementRepositoryMock = $this->getMockBuilder('Elgentos\InventoryLog\Model\MovementRepository')
                                         ->disableOriginalConstructor()
                                         ->getMock();
 

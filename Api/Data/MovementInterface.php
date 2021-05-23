@@ -7,12 +7,12 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 KiwiCommerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
 
-namespace KiwiCommerce\InventoryLog\Api\Data;
+namespace Elgentos\InventoryLog\Api\Data;
 
 interface MovementInterface
 {
@@ -41,7 +41,7 @@ interface MovementInterface
     /**
      * Set movement_id
      * @param string $movementId
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setMovementId($movementId);
 
@@ -54,7 +54,7 @@ interface MovementInterface
     /**
      * Set entity_id
      * @param string $entityId
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setEntityId($entityId);
 
@@ -67,7 +67,7 @@ interface MovementInterface
     /**
      * Set stock_item_id
      * @param string $stockItemId
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setStockItemId($stockItemId);
 
@@ -80,7 +80,7 @@ interface MovementInterface
     /**
      * Set product_id
      * @param string $productId
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setProductId($productId);
 
@@ -93,7 +93,7 @@ interface MovementInterface
     /**
      * Set user_id
      * @param string $userId
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setUserId($userId);
 
@@ -106,7 +106,7 @@ interface MovementInterface
     /**
      * Set username
      * @param string $username
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setUsername($username);
 
@@ -119,7 +119,7 @@ interface MovementInterface
     /**
      * Set Is_admin
      * @param string $isAdmin
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setIsAdmin($isAdmin);
 
@@ -132,7 +132,7 @@ interface MovementInterface
     /**
      * Set current_qty
      * @param string $currentQty
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setCurrentQty($currentQty);
 
@@ -145,7 +145,7 @@ interface MovementInterface
     /**
      * Set qty_movement
      * @param string $qtyMovement
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setQtyMovement($qtyMovement);
 
@@ -158,7 +158,7 @@ interface MovementInterface
     /**
      * Set old_qty
      * @param string $oldQty
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setOldQty($oldQty);
 
@@ -171,7 +171,7 @@ interface MovementInterface
     /**
      * Set is_in_stock
      * @param string $isInStock
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setIsInStock($isInStock);
 
@@ -184,7 +184,7 @@ interface MovementInterface
     /**
      * Set message
      * @param string $message
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setMessage($message);
 
@@ -197,7 +197,7 @@ interface MovementInterface
     /**
      * Set ukey
      * @param string $ukey
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setUkey($ukey);
 
@@ -210,7 +210,7 @@ interface MovementInterface
     /**
      * Set ip
      * @param string $ip
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setIp($ip);
 
@@ -223,7 +223,7 @@ interface MovementInterface
     /**
      * Set created_at
      * @param string $createdAt
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setCreatedAt($createdAt);
 }

@@ -7,14 +7,14 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 KiwiCommerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
 
-namespace KiwiCommerce\InventoryLog\Plugin\Stock;
+namespace Elgentos\InventoryLog\Plugin\Stock;
 
-use KiwiCommerce\InventoryLog\Helper\Data as InventoryLogHelper;
+use Elgentos\InventoryLog\Helper\Data as InventoryLogHelper;
 
 class StockItemRepository
 {
@@ -24,7 +24,7 @@ class StockItemRepository
     public $helper;
 
     /**
-     * @var \KiwiCommerce\InventoryLog\Model\ResourceModel\Movement
+     * @var \Elgentos\InventoryLog\Model\ResourceModel\Movement
      */
     private $movementResourceModel;
 
@@ -34,22 +34,22 @@ class StockItemRepository
     public $registry;
 
     /**
-     * @var \KiwiCommerce\InventoryLog\Api\MovementRepositoryInterface
+     * @var \Elgentos\InventoryLog\Api\MovementRepositoryInterface
      */
     public $movementRepository;
 
     /**
      * StockItemRepository constructor.
      * @param InventoryLogHelper $helper
-     * @param \KiwiCommerce\InventoryLog\Model\ResourceModel\Movement $movementResourceModel
+     * @param \Elgentos\InventoryLog\Model\ResourceModel\Movement $movementResourceModel
      * @param \Magento\Framework\Registry $registry
-     * @param \KiwiCommerce\InventoryLog\Api\MovementRepositoryInterface $movementRepository
+     * @param \Elgentos\InventoryLog\Api\MovementRepositoryInterface $movementRepository
      */
     public function __construct(
         InventoryLogHelper $helper,
-        \KiwiCommerce\InventoryLog\Model\ResourceModel\Movement $movementResourceModel,
+        \Elgentos\InventoryLog\Model\ResourceModel\Movement $movementResourceModel,
         \Magento\Framework\Registry $registry,
-        \KiwiCommerce\InventoryLog\Api\MovementRepositoryInterface $movementRepository
+        \Elgentos\InventoryLog\Api\MovementRepositoryInterface $movementRepository
     ) {
         $this->helper = $helper;
         $this->movementResourceModel = $movementResourceModel;

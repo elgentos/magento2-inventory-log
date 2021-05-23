@@ -7,20 +7,20 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 KiwiCommerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
 
-namespace KiwiCommerce\InventoryLog\Ui\DataProvider\Product\Form;
+namespace Elgentos\InventoryLog\Ui\DataProvider\Product\Form;
 
 use Magento\Framework\App\RequestInterface;
-use KiwiCommerce\InventoryLog\Model\ResourceModel\Movement\CollectionFactory;
+use Elgentos\InventoryLog\Model\ResourceModel\Movement\CollectionFactory;
 
 class Movement extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
     /**
-     * @var \KiwiCommerce\InventoryLog\Model\ResourceModel\Movement\CollectionFactory
+     * @var \Elgentos\InventoryLog\Model\ResourceModel\Movement\CollectionFactory
      */
     public $collection;
 

@@ -7,12 +7,12 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 KiwiCommerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
 
-namespace KiwiCommerce\InventoryLog\Helper;
+namespace Elgentos\InventoryLog\Helper;
 
 use \Magento\Customer\Model\Session as CustomerSession;
 use \Magento\Backend\Model\Auth\Session as AdminSession;
@@ -26,7 +26,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     const MOVEMENT_SECTION = "movement_section";
     const NEW_PRODUCT = "new_product";
     const MOVEMENT_DATA = "movement_data";
-    const RESOURCE_ID = "KiwiCommerce_InventoryLog::config";
+    const RESOURCE_ID = "Elgentos_InventoryLog::config";
     const CONFIG_ENABLE_PATH = 'inventory_log/general/inventory_enabled';
     /**
      * @var string $randomString
@@ -93,7 +93,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function isModuleEnabled()
     {
-        if ($this->_moduleManager->isEnabled('KiwiCommerce_InventoryLog')) {
+        if ($this->_moduleManager->isEnabled('Elgentos_InventoryLog')) {
             if ($this->isEnabled()) {
                 return true;
             }
@@ -109,7 +109,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function isOutputEnabled()
     {
-        if ($this->_moduleManager->isOutputEnabled('KiwiCommerce_InventoryLog')) {
+        if ($this->_moduleManager->isOutputEnabled('Elgentos_InventoryLog')) {
             if ($this->isEnabled()) {
                 return true;
             }

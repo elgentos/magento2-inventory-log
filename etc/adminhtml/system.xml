@@ -8,7 +8,7 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 KiwiCommerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
@@ -16,20 +16,11 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="kiwicommerce" translate="label" sortOrder="2000">
-            <label><![CDATA[KiwiCommerce Extensions]]></label>
-        </tab>
-        <section id="inventory_log" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
-            <label>Inventory Log</label>
-            <tab>kiwicommerce</tab>
-            <resource>KiwiCommerce_InventoryLog::config</resource>
-            <group id="hint" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
-                <frontend_model>KiwiCommerce\InventoryLog\Block\Adminhtml\System\Config\Fieldset\Hint</frontend_model>
-            </group>
-            <group id="general" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Inventory Log</label>
+        <section id="cataloginventory" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
+            <resource>Elgentos_InventoryLog::config</resource>
+            <group id="options" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
                 <field id="inventory_enabled" translate="label" type="select" showInDefault="1" canRestore="1" showInWebsite="1" showInStore="1">
-                    <label>Enable</label>
+                    <label>Inventory Log Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>

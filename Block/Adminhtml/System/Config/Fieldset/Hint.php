@@ -7,19 +7,19 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 Kiwi Commerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
 
-namespace KiwiCommerce\InventoryLog\Block\Adminhtml\System\Config\Fieldset;
+namespace Elgentos\InventoryLog\Block\Adminhtml\System\Config\Fieldset;
 
 use \Magento\Backend\Block\Template;
 use \Magento\Framework\Data\Form\Element\Renderer\RendererInterface;
 
 /**
  * Class Hint
- * @package KiwiCommerce\InventoryLog\Block\Adminhtml\System\Config\Fieldset
+ * @package Elgentos\InventoryLog\Block\Adminhtml\System\Config\Fieldset
  */
 class Hint extends Template implements RendererInterface
 {
@@ -39,7 +39,7 @@ class Hint extends Template implements RendererInterface
         \Magento\Framework\Module\ModuleList $moduleList,
         array $data = []
     ) {
-        $this->_template = 'KiwiCommerce_InventoryLog::system/config/fieldset/hint.phtml';
+        $this->_template = 'Elgentos_InventoryLog::system/config/fieldset/hint.phtml';
         parent::__construct($context, $data);
         $this->moduleList = $moduleList;
     }
@@ -59,6 +59,6 @@ class Hint extends Template implements RendererInterface
      */
     public function getModuleVersion()
     {
-        return $this->moduleList->getOne('KiwiCommerce_InventoryLog')['setup_version'];
+        return $this->moduleList->getOne('Elgentos_InventoryLog')['setup_version'];
     }
 }

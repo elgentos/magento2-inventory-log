@@ -7,14 +7,14 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 KiwiCommerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
 
-namespace KiwiCommerce\InventoryLog\Plugin\Import;
+namespace Elgentos\InventoryLog\Plugin\Import;
 
-use KiwiCommerce\InventoryLog\Helper\Data as InventoryLogHelper;
+use Elgentos\InventoryLog\Helper\Data as InventoryLogHelper;
 use Magento\Framework\Model\ResourceModel\Db\ObjectRelationProcessor;
 use Magento\Framework\Model\ResourceModel\Db\TransactionManagerInterface;
 use Magento\ImportExport\Model\Import\ErrorProcessing\ProcessingErrorAggregatorInterface;
@@ -108,7 +108,7 @@ class Product extends \Magento\CatalogImportExport\Model\Import\Product
         \Magento\CatalogImportExport\Model\Import\Product\TaxClassProcessor $taxClassProcessor,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Catalog\Model\Product\Url $productUrl,
-        \KiwiCommerce\InventoryLog\Helper\Data $helper,
+        \Elgentos\InventoryLog\Helper\Data $helper,
         array $data = [],
         array $dateAttrCodes = [],
         CatalogConfig $catalogConfig = null

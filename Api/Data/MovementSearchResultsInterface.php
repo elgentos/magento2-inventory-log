@@ -7,24 +7,24 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 KiwiCommerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
 
-namespace KiwiCommerce\InventoryLog\Api\Data;
+namespace Elgentos\InventoryLog\Api\Data;
 
 interface MovementSearchResultsInterface extends \Magento\Framework\Api\SearchResultsInterface
 {
     /**
      * Get movement list.
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface[]
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface[]
      */
     public function getItems();
 
     /**
      * Set entity_id list.
-     * @param \KiwiCommerce\InventoryLog\Api\Data\MovementInterface[] $items
+     * @param \Elgentos\InventoryLog\Api\Data\MovementInterface[] $items
      * @return $this
      */
     public function setItems(array $items);

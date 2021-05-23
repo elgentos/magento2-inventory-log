@@ -7,12 +7,12 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 KiwiCommerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
 
-namespace KiwiCommerce\InventoryLog\Api;
+namespace Elgentos\InventoryLog\Api;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
 
@@ -20,18 +20,18 @@ interface MovementRepositoryInterface
 {
     /**
      * Save movement
-     * @param \KiwiCommerce\InventoryLog\Api\Data\MovementInterface $movement
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @param \Elgentos\InventoryLog\Api\Data\MovementInterface $movement
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function save(
-        \KiwiCommerce\InventoryLog\Api\Data\MovementInterface $movement
+        \Elgentos\InventoryLog\Api\Data\MovementInterface $movement
     );
 
     /**
      * Retrieve movement
      * @param string $movementId
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getById($movementId);
@@ -39,7 +39,7 @@ interface MovementRepositoryInterface
     /**
      * Retrieve movement matching the specified criteria.
      * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementSearchResultsInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementSearchResultsInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getList(
@@ -48,12 +48,12 @@ interface MovementRepositoryInterface
 
     /**
      * Delete movement
-     * @param \KiwiCommerce\InventoryLog\Api\Data\MovementInterface $movement
+     * @param \Elgentos\InventoryLog\Api\Data\MovementInterface $movement
      * @return bool true on success
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function delete(
-        \KiwiCommerce\InventoryLog\Api\Data\MovementInterface $movement
+        \Elgentos\InventoryLog\Api\Data\MovementInterface $movement
     );
 
     /**

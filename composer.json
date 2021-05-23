@@ -1,5 +1,5 @@
 {
-    "name": "kiwicommerce/module-inventory-log",
+    "name": "elgentos/magento2-inventory-log",
     "description": "Magento 2 - Inventory Log",
     "type": "magento2-module",
     "version": "1.0.2",
@@ -12,7 +12,13 @@
             "name": "Kiwi Commerce Ltd",
             "email": "hello@kiwicommerce.co.uk",
             "homepage": "https://kiwicommerce.co.uk/",
-            "role": "Leader"
+            "role": "Original"
+        },
+	{
+            "name": "elgentos",
+            "email": "info@elgentos.nl",
+            "homepage": "https://elgentos.nl/",
+            "role": "Adoptee"
         }
     ],
     "autoload": {
@@ -20,7 +26,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "KiwiCommerce\\InventoryLog\\": ""
+            "Elgentos\\InventoryLog\\": ""
         }
     }
 }

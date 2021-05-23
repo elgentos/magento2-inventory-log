@@ -7,16 +7,16 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 KiwiCommerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
 
-namespace KiwiCommerce\InventoryLog\Observer;
+namespace Elgentos\InventoryLog\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Event\Observer as EventObserver;
-use KiwiCommerce\InventoryLog\Helper\Data as InventoryLogHelper;
+use Elgentos\InventoryLog\Helper\Data as InventoryLogHelper;
 
 /**
  * Inventory log module observer
@@ -40,12 +40,12 @@ class ImportProductData implements ObserverInterface
     public $registry;
     
     /**
-     * @var \KiwiCommerce\InventoryLog\Model\MovementFactory
+     * @var \Elgentos\InventoryLog\Model\MovementFactory
      */
     private $movementFactory;
     
     /**
-     * @var \KiwiCommerce\InventoryLog\Api\MovementRepositoryInterface
+     * @var \Elgentos\InventoryLog\Api\MovementRepositoryInterface
      */
     private $movementRepository;
 
@@ -55,7 +55,7 @@ class ImportProductData implements ObserverInterface
     private $stockRegistryInterface;
 
     /**
-     * @var \KiwiCommerce\InventoryLog\Model\ResourceModel\Movement
+     * @var \Elgentos\InventoryLog\Model\ResourceModel\Movement
      */
     private $movementResourceModel;
 
@@ -64,28 +64,28 @@ class ImportProductData implements ObserverInterface
      * @param InventoryLogHelper $helper
      * @param \Magento\Framework\Registry $registry
      * @param \Magento\CatalogInventory\Api\StockRegistryInterface $stockRegistryInterface
-     * @param \KiwiCommerce\InventoryLog\Model\ResourceModel\Movement $movementResourceModel
+     * @param \Elgentos\InventoryLog\Model\ResourceModel\Movement $movementResourceModel
      * @param \Magento\ImportExport\Model\Import $import
-     * @param \KiwiCommerce\InventoryLog\Model\MovementFactory|null $movementFactory
-     * @param \KiwiCommerce\InventoryLog\Api\MovementRepositoryInterface|null $movementRepository
+     * @param \Elgentos\InventoryLog\Model\MovementFactory|null $movementFactory
+     * @param \Elgentos\InventoryLog\Api\MovementRepositoryInterface|null $movementRepository
      */
     public function __construct(
         InventoryLogHelper $helper,
         \Magento\Framework\Registry $registry,
         \Magento\CatalogInventory\Api\StockRegistryInterface $stockRegistryInterface,
-        \KiwiCommerce\InventoryLog\Model\ResourceModel\Movement $movementResourceModel,
+        \Elgentos\InventoryLog\Model\ResourceModel\Movement $movementResourceModel,
         \Magento\ImportExport\Model\Import $import,
-        \KiwiCommerce\InventoryLog\Model\MovementFactory $movementFactory = null,
-        \KiwiCommerce\InventoryLog\Api\MovementRepositoryInterface $movementRepository = null
+        \Elgentos\InventoryLog\Model\MovementFactory $movementFactory = null,
+        \Elgentos\InventoryLog\Api\MovementRepositoryInterface $movementRepository = null
     ) {
         $this->registry = $registry;
         $this->helper = $helper;
         $this->stockRegistryInterface = $stockRegistryInterface;
         $this->movementFactory = $movementFactory
-            ?: \Magento\Framework\App\ObjectManager::getInstance()->get(\KiwiCommerce\InventoryLog\Model\MovementFactory::class);
+            ?: \Magento\Framework\App\ObjectManager::getInstance()->get(\Elgentos\InventoryLog\Model\MovementFactory::class);
         $this->movementRepository = $movementRepository
             ?: \Magento\Framework\App\ObjectManager::getInstance()
-                ->get(\KiwiCommerce\InventoryLog\Api\MovementRepositoryInterface::class);
+                ->get(\Elgentos\InventoryLog\Api\MovementRepositoryInterface::class);
         $this->movementResourceModel = $movementResourceModel;
         $this->import=$import;
     }

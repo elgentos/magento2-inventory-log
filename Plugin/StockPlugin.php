@@ -7,14 +7,14 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 KiwiCommerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
 
-namespace KiwiCommerce\InventoryLog\Plugin;
+namespace Elgentos\InventoryLog\Plugin;
 
-use KiwiCommerce\InventoryLog\Helper\Data as InventoryLogHelper;
+use Elgentos\InventoryLog\Helper\Data as InventoryLogHelper;
 
 class StockPlugin
 {
@@ -29,18 +29,18 @@ class StockPlugin
     public $registry;
     
     /**
-     * @var \KiwiCommerce\InventoryLog\Model\ResourceModel\Movement
+     * @var \Elgentos\InventoryLog\Model\ResourceModel\Movement
      */
     private $movement;
 
     /**
      * StockPlugin constructor.
-     * @param \KiwiCommerce\InventoryLog\Model\ResourceModel\Movement $movement
+     * @param \Elgentos\InventoryLog\Model\ResourceModel\Movement $movement
      * @param InventoryLogHelper $helper
      * @param \Magento\Framework\Registry $registry
      */
     public function __construct(
-        \KiwiCommerce\InventoryLog\Model\ResourceModel\Movement $movement,
+        \Elgentos\InventoryLog\Model\ResourceModel\Movement $movement,
         InventoryLogHelper $helper,
         \Magento\Framework\Registry $registry
     ) {

@@ -7,11 +7,11 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 KiwiCommerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
-namespace KiwiCommerce\InventoryLog\Test\Unit\Helper;
+namespace Elgentos\InventoryLog\Test\Unit\Helper;
 
 class DataTest extends \PHPUnit\Framework\TestCase
 {
@@ -56,7 +56,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
     public $authSessionMock;
 
     /**
-     * @var \KiwiCommerce\InventoryLog\Helper\Data
+     * @var \Elgentos\InventoryLog\Helper\Data
      */
     public $object;
 
@@ -104,7 +104,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
             ->getMock();
 
         $this->object = $objectManager->getObject(
-            \KiwiCommerce\InventoryLog\Helper\Data::class,
+            \Elgentos\InventoryLog\Helper\Data::class,
             [
                 'context' => $context,
                 'customerSession' => $this->customerSessionMock,

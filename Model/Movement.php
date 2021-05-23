@@ -7,14 +7,14 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 KiwiCommerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
 
-namespace KiwiCommerce\InventoryLog\Model;
+namespace Elgentos\InventoryLog\Model;
 
-use KiwiCommerce\InventoryLog\Api\Data\MovementInterface;
+use Elgentos\InventoryLog\Api\Data\MovementInterface;
 
 class Movement extends \Magento\Framework\Model\AbstractModel implements MovementInterface
 {
@@ -24,7 +24,7 @@ class Movement extends \Magento\Framework\Model\AbstractModel implements Movemen
      */
     protected function _construct()
     {
-        $this->_init('KiwiCommerce\InventoryLog\Model\ResourceModel\Movement');
+        $this->_init('Elgentos\InventoryLog\Model\ResourceModel\Movement');
     }
 
     /**
@@ -39,7 +39,7 @@ class Movement extends \Magento\Framework\Model\AbstractModel implements Movemen
     /**
      * Set movement_id
      * @param string $movementId
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setMovementId($movementId)
     {
@@ -58,7 +58,7 @@ class Movement extends \Magento\Framework\Model\AbstractModel implements Movemen
     /**
      * Set entity_id
      * @param string $entityId
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setEntityId($entityId)
     {
@@ -77,7 +77,7 @@ class Movement extends \Magento\Framework\Model\AbstractModel implements Movemen
     /**
      * Set stock_item_id
      * @param string $stockItemId
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setStockItemId($stockItemId)
     {
@@ -96,7 +96,7 @@ class Movement extends \Magento\Framework\Model\AbstractModel implements Movemen
     /**
      * Set product_id
      * @param string $productId
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setProductId($productId)
     {
@@ -115,7 +115,7 @@ class Movement extends \Magento\Framework\Model\AbstractModel implements Movemen
     /**
      * Set user_id
      * @param string $userId
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setUserId($userId)
     {
@@ -134,7 +134,7 @@ class Movement extends \Magento\Framework\Model\AbstractModel implements Movemen
     /**
      * Set username
      * @param string $username
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setUsername($username)
     {
@@ -153,7 +153,7 @@ class Movement extends \Magento\Framework\Model\AbstractModel implements Movemen
     /**
      * Set Is_admin
      * @param string $isAdmin
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setIsAdmin($isAdmin)
     {
@@ -172,7 +172,7 @@ class Movement extends \Magento\Framework\Model\AbstractModel implements Movemen
     /**
      * Set current_qty
      * @param string $currentQty
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setCurrentQty($currentQty)
     {
@@ -191,7 +191,7 @@ class Movement extends \Magento\Framework\Model\AbstractModel implements Movemen
     /**
      * Set qty_movement
      * @param string $qtyMovement
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setQtyMovement($qtyMovement)
     {
@@ -210,7 +210,7 @@ class Movement extends \Magento\Framework\Model\AbstractModel implements Movemen
     /**
      * Set old_qty
      * @param string $oldQty
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setOldQty($oldQty)
     {
@@ -229,7 +229,7 @@ class Movement extends \Magento\Framework\Model\AbstractModel implements Movemen
     /**
      * Set is_in_stock
      * @param string $isInStock
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setIsInStock($isInStock)
     {
@@ -248,7 +248,7 @@ class Movement extends \Magento\Framework\Model\AbstractModel implements Movemen
     /**
      * Set message
      * @param string $message
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setMessage($message)
     {
@@ -267,7 +267,7 @@ class Movement extends \Magento\Framework\Model\AbstractModel implements Movemen
     /**
      * Set ukey
      * @param string $ukey
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setUkey($ukey)
     {
@@ -286,7 +286,7 @@ class Movement extends \Magento\Framework\Model\AbstractModel implements Movemen
     /**
      * Set ip
      * @param string $ip
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setIp($ip)
     {
@@ -305,7 +305,7 @@ class Movement extends \Magento\Framework\Model\AbstractModel implements Movemen
     /**
      * Set created_at
      * @param string $createdAt
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      */
     public function setCreatedAt($createdAt)
     {

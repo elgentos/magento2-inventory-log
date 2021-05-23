@@ -7,14 +7,14 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 KiwiCommerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
-namespace KiwiCommerce\InventoryLog\Plugin;
+namespace Elgentos\InventoryLog\Plugin;
 
 use Magento\Config\Model\ResourceModel\Config as ConfigResource;
-use KiwiCommerce\InventoryLog\Helper\Data as StockMovementHelper;
+use Elgentos\InventoryLog\Helper\Data as StockMovementHelper;
 
 class ModuleStatus
 {
@@ -23,7 +23,7 @@ class ModuleStatus
      */
     public $configResource;
 
-    const EXTENSION_NAME = 'KiwiCommerce_InventoryLog';
+    const EXTENSION_NAME = 'Elgentos_InventoryLog';
 
     /**
      * ModuleStatus constructor.
@@ -49,7 +49,7 @@ class ModuleStatus
         $isEnabled,
         $modules
     ) {
-        // Check KiwiCommerce_InventoryLog is disabled then remove entry from core_config_data table
+        // Check Elgentos_InventoryLog is disabled then remove entry from core_config_data table
         if (in_array(self::EXTENSION_NAME, $modules) && empty($isEnabled)) {
 
             $deleteParams = [];

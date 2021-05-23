@@ -7,14 +7,14 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 KiwiCommerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
-namespace KiwiCommerce\InventoryLog\Test\Unit\Model\ResourceModel;
+namespace Elgentos\InventoryLog\Test\Unit\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\Context;
-use KiwiCommerce\InventoryLog\Model\ResourceModel\Movement as MovementResourceModel;
+use Elgentos\InventoryLog\Model\ResourceModel\Movement as MovementResourceModel;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use Magento\Framework\EntityManager\EntityManager;
 use Magento\Framework\App\ResourceConnection;
@@ -27,12 +27,12 @@ class MovementTest extends \PHPUnit\Framework\TestCase
     public $contextMock;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\KiwiCommerce\InventoryLog\Helper\Data
+     * @var \PHPUnit_Framework_MockObject_MockObject|\Elgentos\InventoryLog\Helper\Data
      */
     public $movementDataHelper;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\KiwiCommerce\InventoryLog\Model\ResourceModel\Movement
+     * @var \PHPUnit_Framework_MockObject_MockObject|\Elgentos\InventoryLog\Model\ResourceModel\Movement
      */
     public $model;
 
@@ -47,7 +47,7 @@ class MovementTest extends \PHPUnit\Framework\TestCase
     public $resourcesMock;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\KiwiCommerce\InventoryLog\Model\ResourceModel\Movement
+     * @var \PHPUnit_Framework_MockObject_MockObject|\Elgentos\InventoryLog\Model\ResourceModel\Movement
      */
     public $movementResourceMock;
 
@@ -60,7 +60,7 @@ class MovementTest extends \PHPUnit\Framework\TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->movementDataHelper = $this->getMockBuilder('KiwiCommerce\InventoryLog\Helper\Data')
+        $this->movementDataHelper = $this->getMockBuilder('Elgentos\InventoryLog\Helper\Data')
             ->disableOriginalConstructor()
             ->getMock();
 

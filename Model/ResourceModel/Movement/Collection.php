@@ -7,12 +7,12 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 KiwiCommerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
 
-namespace KiwiCommerce\InventoryLog\Model\ResourceModel\Movement;
+namespace Elgentos\InventoryLog\Model\ResourceModel\Movement;
 
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
@@ -29,8 +29,8 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
     protected function _construct()
     {
         $this->_init(
-            'KiwiCommerce\InventoryLog\Model\Movement',
-            'KiwiCommerce\InventoryLog\Model\ResourceModel\Movement'
+            'Elgentos\InventoryLog\Model\Movement',
+            'Elgentos\InventoryLog\Model\ResourceModel\Movement'
         );
     }
 

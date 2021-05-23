@@ -7,14 +7,14 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 KiwiCommerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
 
-namespace KiwiCommerce\InventoryLog\Plugin;
+namespace Elgentos\InventoryLog\Plugin;
 
-use KiwiCommerce\InventoryLog\Helper\Data as InventoryLogHelper;
+use Elgentos\InventoryLog\Helper\Data as InventoryLogHelper;
 
 class ProductAttributeSave
 {

@@ -7,18 +7,18 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 KiwiCommerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
 
-namespace KiwiCommerce\InventoryLog\Observer;
+namespace Elgentos\InventoryLog\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
 use Magento\CatalogInventory\Api\StockConfigurationInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\Product\Type as ProductType;
-use KiwiCommerce\InventoryLog\Helper\Data as InventoryLogHelper;
+use Elgentos\InventoryLog\Helper\Data as InventoryLogHelper;
 
 class RefundOrderInventoryObserver implements ObserverInterface
 {
@@ -38,7 +38,7 @@ class RefundOrderInventoryObserver implements ObserverInterface
     public $productRepositoryInterface;
 
     /**
-     * @var \KiwiCommerce\InventoryLog\Api\MovementRepositoryInterface
+     * @var \Elgentos\InventoryLog\Api\MovementRepositoryInterface
      */
     public $movementRepository;
 
@@ -57,14 +57,14 @@ class RefundOrderInventoryObserver implements ObserverInterface
      * @param StockConfigurationInterface $stockConfiguration
      * @param ProductRepositoryInterface $productRepositoryInterface
      * @param \Magento\CatalogInventory\Api\StockRegistryInterface $stockRegistryInterface
-     * @param \KiwiCommerce\InventoryLog\Api\MovementRepositoryInterface $movementRepository
+     * @param \Elgentos\InventoryLog\Api\MovementRepositoryInterface $movementRepository
      * @param InventoryLogHelper $helper
      */
     public function __construct(
         StockConfigurationInterface $stockConfiguration,
         ProductRepositoryInterface $productRepositoryInterface,
         \Magento\CatalogInventory\Api\StockRegistryInterface $stockRegistryInterface,
-        \KiwiCommerce\InventoryLog\Api\MovementRepositoryInterface $movementRepository,
+        \Elgentos\InventoryLog\Api\MovementRepositoryInterface $movementRepository,
         \Magento\Framework\App\ProductMetadataInterface $productMetadata,
         InventoryLogHelper $helper
     ) {

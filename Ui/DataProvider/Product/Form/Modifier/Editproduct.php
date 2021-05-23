@@ -7,12 +7,12 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 KiwiCommerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
 
-namespace KiwiCommerce\InventoryLog\Ui\DataProvider\Product\Form\Modifier;
+namespace Elgentos\InventoryLog\Ui\DataProvider\Product\Form\Modifier;
 
 use Magento\Catalog\Controller\Adminhtml\Product\Initialization\StockDataFilter;
 use Magento\Catalog\Model\Locator\LocatorInterface;
@@ -23,7 +23,7 @@ use Magento\CatalogInventory\Api\StockRegistryInterface;
 use Magento\Framework\Stdlib\ArrayManager;
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\UrlInterface;
-use KiwiCommerce\InventoryLog\Helper\Data as InventoryLogHelper;
+use Elgentos\InventoryLog\Helper\Data as InventoryLogHelper;
 
 /**
  * Data provider for advanced inventory form

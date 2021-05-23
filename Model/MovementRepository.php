@@ -7,27 +7,27 @@
  * Please contact us https://kiwicommerce.co.uk/contacts.
  *
  * @category   KiwiCommerce
- * @package    KiwiCommerce_InventoryLog
+ * @package    Elgentos_InventoryLog
  * @copyright  Copyright (C) 2018 KiwiCommerce Ltd (https://kiwicommerce.co.uk/)
  * @license    https://kiwicommerce.co.uk/magento2-extension-license/
  */
 
 
-namespace KiwiCommerce\InventoryLog\Model;
+namespace Elgentos\InventoryLog\Model;
 
-use KiwiCommerce\InventoryLog\Api\MovementRepositoryInterface;
-use KiwiCommerce\InventoryLog\Api\Data\MovementSearchResultsInterfaceFactory;
+use Elgentos\InventoryLog\Api\MovementRepositoryInterface;
+use Elgentos\InventoryLog\Api\Data\MovementSearchResultsInterfaceFactory;
 use Magento\Store\Model\StoreManagerInterface;
-use KiwiCommerce\InventoryLog\Model\ResourceModel\Movement as ResourceMovement;
+use Elgentos\InventoryLog\Model\ResourceModel\Movement as ResourceMovement;
 use Magento\Framework\Api\SortOrder;
-use KiwiCommerce\InventoryLog\Model\ResourceModel\Movement\CollectionFactory as MovementCollectionFactory;
+use Elgentos\InventoryLog\Model\ResourceModel\Movement\CollectionFactory as MovementCollectionFactory;
 use Magento\Framework\Api\DataObjectHelper;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Reflection\DataObjectProcessor;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\CouldNotDeleteException;
-use KiwiCommerce\InventoryLog\Api\Data\MovementInterfaceFactory;
-use KiwiCommerce\InventoryLog\Helper\Data as MovementHelper;
+use Elgentos\InventoryLog\Api\Data\MovementInterfaceFactory;
+use Elgentos\InventoryLog\Helper\Data as MovementHelper;
 use Magento\CatalogInventory\Api\Data\StockItemInterface;
 
 class MovementRepository implements MovementRepositoryInterface
@@ -119,12 +119,12 @@ class MovementRepository implements MovementRepositoryInterface
     }
 
     /**
-     * @param \KiwiCommerce\InventoryLog\Api\Data\MovementInterface $movement
-     * @return \KiwiCommerce\InventoryLog\Api\Data\MovementInterface
+     * @param \Elgentos\InventoryLog\Api\Data\MovementInterface $movement
+     * @return \Elgentos\InventoryLog\Api\Data\MovementInterface
      * @throws CouldNotSaveException
      */
     public function save(
-        \KiwiCommerce\InventoryLog\Api\Data\MovementInterface $movement
+        \Elgentos\InventoryLog\Api\Data\MovementInterface $movement
     ) {
         try {
             $this->resource->save($movement);
@@ -239,12 +239,12 @@ class MovementRepository implements MovementRepositoryInterface
     }
 
     /**
-     * @param \KiwiCommerce\InventoryLog\Api\Data\MovementInterface $movement
+     * @param \Elgentos\InventoryLog\Api\Data\MovementInterface $movement
      * @return bool
      * @throws CouldNotDeleteException
      */
     public function delete(
-        \KiwiCommerce\InventoryLog\Api\Data\MovementInterface $movement
+        \Elgentos\InventoryLog\Api\Data\MovementInterface $movement
     ) {
         try {
             $this->resource->delete($movement);
