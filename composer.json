@@ -5,6 +5,9 @@
     "license": [
         "OSL-3.0"
     ],
+    "require": {
+        "hyva-themes/module-magento2-admin": "*"
+    },
     "minimum-stability": "dev",
     "authors": [
         {

@@ -1,0 +1,5 @@
+<?php if ($cell->getRawValue()): ?>
+    <a href="<?=$this->getUrl('customer/index/edit', ['id' => $cell->getRawValue()]); ?>"><?=$cell->getRawValue();?></a>
+<?php else: ?>
+    <?=$cell->getRawValue();?>
+<?php endif; ?>

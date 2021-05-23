@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<grid xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Hyva_Admin:etc/hyva-grid.xsd">
+    <source>
+        <repositoryListMethod>\Elgentos\InventoryLog\Api\MovementRepositoryInterface::getList</repositoryListMethod>
+    </source>
+    <columns>
+        <exclude>
+            <column name="entity_id" />
+        </exclude>
+        <include>
+            <column name="ip" initiallyHidden="true" />
+            <column name="ukey" initiallyHidden="true" />
+            <column name="movement_id" initiallyHidden="true" />
+            <column name="stock_item_id" initiallyHidden="true" />
+            <column name="created_at" />
+            <column name="product_id" template="Elgentos_InventoryLog::product.phtml" />
+            <column name="user_id" template="Elgentos_InventoryLog::userId.phtml"/>
+            <column name="username" template="Elgentos_InventoryLog::username.phtml"/>
+            <column name="is_admin" />
+            <column name="current_qty" />
+            <column name="qty_movement" />
+            <column name="old_qty" />
+            <column name="is_in_stock" />
+            <column name="message" template="Elgentos_InventoryLog::message.phtml"/>
+        </include>
+    </columns>
+    <navigation>
+        <pager>
+            <defaultPageSize>100</defaultPageSize>
+            <pageSizes>50,100,250,500</pageSizes>
+        </pager>
+        <sorting>
+            <defaultSortByColumn>movement_id</defaultSortByColumn>
+            <defaultSortDirection>desc</defaultSortDirection>
+        </sorting>
+        <exports>
+            <export type="csv" label="Export as CSV"/>
+            <export type="xml" label="Export as XML"/>
+            <export type="xlsx" label="Export as XLSX"/>
+        </exports>
+    </navigation>
+</grid>

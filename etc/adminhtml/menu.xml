@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Elgentos_InventoryLog::config" title="Stock Movement" module="Elgentos_InventoryLog" sortOrder="9999" resource="Elgentos_InventoryLog::grid_index" parent="Magento_Reports::report_products" action="inventorylog/grid/index"/>
+    </menu>
+</config>

@@ -23,12 +23,17 @@ composer require elgentos/magento2-inventory-log
 php bin/magento setup:upgrade
 ```
 
-## Features
+## Inventory Log per Product
 
 Navigate to Product > Catalog and Click on edit link of the product. Then click 'Inventory Log' under Quantity option.
 
 ![image](https://user-images.githubusercontent.com/431360/119259479-cb18f680-bbce-11eb-887c-d828e1ffa6e3.png)
 
+## Inventory Log Grid
+
+A grid with all stock movement can now be found under Reports > (Products) Stock Movement.
+
+![image](https://user-images.githubusercontent.com/431360/119260131-b853f100-bbd1-11eb-83e7-5b57429494dc.png)
 
 ### Configuration
 

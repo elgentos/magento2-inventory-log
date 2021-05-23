@@ -1,0 +1,6 @@
+<?php $userId = $cell->getRow()->getCell('user_id')->getRawValue(); ?>
+<?php if ($userId): ?>
+    <a href="<?=$this->getUrl('customer/index/edit', ['id' => $userId]); ?>"><?=$cell->getRawValue();?></a>
+<?php else: ?>
+    <?=$cell->getRawValue();?>
+<?php endif; ?>

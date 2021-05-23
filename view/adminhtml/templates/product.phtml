@@ -1,0 +1,6 @@
+<?php $productId = $cell->getRawValue(); ?>
+<?php if ($productId): ?>
+    <a href="<?=$this->getUrl('catalog/product/edit', ['id' => $productId]); ?>"><?=$productId;?></a>
+<?php else: ?>
+    <?=$productId;?>
+<?php endif; ?>
