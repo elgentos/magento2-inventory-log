@@ -27,7 +27,7 @@ php bin/magento setup:upgrade
 
 Navigate to Product > Catalog and Click on edit link of the product. Then click 'Inventory Log' under Quantity option.
 
-![image](https://user-images.githubusercontent.com/431360/119259479-cb18f680-bbce-11eb-887c-d828e1ffa6e3.png)
+![image](https://user-images.githubusercontent.com/431360/119275588-3e922680-bc16-11eb-84ff-571f0b8aafdf.png)
 
 ## Inventory Log Grid
 
