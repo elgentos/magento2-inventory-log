@@ -25,15 +25,21 @@ php bin/magento setup:upgrade
 
 ## Inventory Log per Product
 
-Navigate to Product > Catalog and Click on edit link of the product. Then click 'Inventory Log' under Quantity option.
+Navigate to Product > Catalog and Click on edit link of the product. Then click 'Inventory Log' under Quantity option. You'll see a graph plotting the 100 most recent stock movements, and a grid showing all stock movements.
 
-![image](https://user-images.githubusercontent.com/431360/119275588-3e922680-bc16-11eb-84ff-571f0b8aafdf.png)
+![image](https://user-images.githubusercontent.com/431360/119305600-3ca58300-bc69-11eb-904b-510b865730c3.png)
 
 ## Inventory Log Grid
 
 A grid with all stock movement can now be found under Reports > (Products) Stock Movement.
 
 ![image](https://user-images.githubusercontent.com/431360/119260131-b853f100-bbd1-11eb-83e7-5b57429494dc.png)
+
+## Stock Movement Graph
+
+From the Inventory Log Grid, you can click on Graph to see the same graph as on the product edit page;
+
+![image](https://user-images.githubusercontent.com/431360/119304262-4a5a0900-bc67-11eb-9462-d5003779f651.png)
 
 ### Configuration
 
