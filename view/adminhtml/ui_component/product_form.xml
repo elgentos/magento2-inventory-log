@@ -33,6 +33,9 @@
                     </item>
                 </item>
             </argument>
+            <htmlContent name="inventory-log-graph">
+                <block class="Elgentos\InventoryLog\Block\Graph" name="inventory-log-graph" template="Elgentos_InventoryLog::graph.phtml" />
+            </htmlContent>
             <htmlContent name="inventory-log-grid">
                 <block class="Hyva\Admin\Block\Adminhtml\HyvaGrid" name="inventory-log-grid" />
             </htmlContent>
