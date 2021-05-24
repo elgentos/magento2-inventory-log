@@ -7,6 +7,9 @@
             <processor class="\Elgentos\InventoryLog\HyvaGridProcessor\MovementCollectionProcessor"/>
         </processors>
     </source>
+    <actions idColumn="product_id">
+        <action id="graph" label="Graph" url="inventorylog/product/graph"/>
+    </actions>
     <columns>
         <exclude>
             <column name="entity_id" />
@@ -36,6 +39,7 @@
             <filter column="movement_id" />
             <filter column="stock_item_id" />
             <filter column="created_at" />
+            <filter column="sku" />
             <filter column="product_id" />
             <filter column="user_id" />
             <filter column="username" />
