@@ -1,0 +1,75 @@
+<?php if (count($block->getStockMovements())): ?>
+    <style>
+        .bg-blue-600 {
+            background-color: rgb(49,130,206);
+        }
+    </style>
+    <div class="antialiased sans-serif bg-gray-200">
+        <div x-data="app()" x-cloak class="px-4">
+            <div class="w-3/4 mx-auto py-24">
+                <div class="shadow p-6 rounded-lg bg-white">
+                    <div class="md:flex md:justify-between md:items-center">
+                        <div>
+                            <h2 class="text-xl text-gray-800 font-bold leading-tight">
+                                <?php echo $block->getProduct()->getName(); ?></h2>
+                            <p class="mb-2 text-gray-600 text-sm"><?php echo $block->getProduct()->getSku(); ?></p>
+                        </div>
+
+                        <!-- Legends -->
+                        <div class="mb-4">
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-blue-600 mr-2 rounded-full"></div>
+                                <div class="text-sm text-gray-700">Current stock</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="line my-8 relative">
+
+                        <!-- Bar Chart -->
+                        <div class="flex -mx-2 items-end mb-2">
+                            <template x-for="data in chartData">
+                                <div class="px-2 w-1/6">
+                                    <div :style="`height: ${data * 5}px`"
+                                         class="transition ease-in duration-200 bg-blue-600 relative"
+                                    >
+                                        <div x-text="data"
+                                             class="text-center absolute top-0 left-0 right-0 -mt-6 text-gray-800 text-sm"></div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+
+                        <!-- Labels -->
+                        <div class="border-t border-gray-400 mx-auto"
+                             :style="`height: 1px; width: ${ 100 - 1/chartData.length*100 + 3}%`"></div>
+                        <div class="flex -mx-2 items-end">
+                            <template x-for="data in labels">
+                                <div class="px-2 w-1/6">
+                                    <div class="bg-red-600 relative">
+                                        <div class="text-center absolute top-0 left-0 right-0 h-2 -mt-px bg-gray-400 mx-auto"
+                                             style="width: 1px"></div>
+                                        <div x-text="data"
+                                             class="text-center absolute top-0 left-0 right-0 mt-3 text-gray-700 text-sm"></div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function app() {
+                return {
+                    chartData: [<?php echo implode(',', $this->getChartData()); ?>],
+                    labels: [<?php echo implode(',', $this->getLabels()); ?>],
+                }
+            }
+        </script>
+    </div>
+<?php else: ?>
+    <?php echo __('No stock movements found.'); ?>
+<?php endif; ?>
