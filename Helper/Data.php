@@ -27,7 +27,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     const NEW_PRODUCT = "new_product";
     const MOVEMENT_DATA = "movement_data";
     const RESOURCE_ID = "Elgentos_InventoryLog::config";
-    const CONFIG_ENABLE_PATH = 'inventory_log/general/inventory_enabled';
+    const CONFIG_ENABLE_PATH = 'cataloginventory/options/inventory_enabled';
     /**
      * @var string $randomString
      */

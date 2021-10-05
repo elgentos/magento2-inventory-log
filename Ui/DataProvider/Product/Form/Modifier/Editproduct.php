@@ -165,12 +165,7 @@ class Editproduct extends AbstractModifier
         $pathField = $this->arrayManager->findPath($fieldCode, $this->meta, null, 'children');
 
         if ($pathField) {
-            $labelField = $this->arrayManager->get(
-                $this->arrayManager->slicePath($pathField, 0, -2) . '/arguments/data/config/label',
-                $this->meta
-            );
-            $fieldSetPath = $this->arrayManager->slicePath($pathField, 0, -4);
-
+            $fieldsetPath = $this->arrayManager->slicePath($pathField, 0, -4);
             $this->meta = $this->arrayManager->merge(
                 $pathField . '/arguments/data/config',
                 $this->meta,
@@ -181,6 +176,7 @@ class Editproduct extends AbstractModifier
                     'scopeLabel' => '[GLOBAL]',
                     'imports' => [
                         'visible' => '${$.provider}:data.product.stock_data.manage_stock',
+                        '__disableTmpl' => ['visible' => false],
                     ],
                 ]
             );
@@ -192,23 +188,23 @@ class Editproduct extends AbstractModifier
                     'scopeLabel' => '[GLOBAL]',
                 ]
             );
-
             $container['arguments']['data']['config'] = [
                 'formElement' => 'container',
                 'componentType' => 'container',
                 'component' => "Magento_Ui/js/form/components/group",
-                'label' => $labelField,
+                'label' => false,
                 'breakLine' => false,
                 'dataScope' => $fieldCode,
-                'scopeLabel' => '[GLOBAL]',
                 'source' => 'product_details',
                 'sortOrder' => (int) $this->arrayManager->get(
-                    $this->arrayManager->slicePath($pathField, 0, -2) . '/arguments/data/config/sortOrder',
-                    $this->meta
-                ) - 1,
+                        $this->arrayManager->slicePath($pathField, 0, -2) . '/arguments/data/config/sortOrder',
+                        $this->meta
+                    ) - 1,
+                'disabled' => $this->locator->getProduct()->isLockedAttribute($fieldCode),
             ];
             $qty['arguments']['data']['config'] = [
                 'component' => 'Magento_CatalogInventory/js/components/qty-validator-changer',
+                'group' => 'quantity_and_stock_status_qty',
                 'dataType' => 'number',
                 'formElement' => 'input',
                 'componentType' => 'field',
@@ -224,8 +220,10 @@ class Editproduct extends AbstractModifier
                 ],
                 'imports' => [
                     'handleChanges' => '${$.provider}:data.product.stock_data.is_qty_decimal',
+                    '__disableTmpl' => ['handleChanges' => false],
                 ],
                 'sortOrder' => 10,
+                'disabled' => $this->locator->getProduct()->isLockedAttribute($fieldCode),
             ];
             $advancedInventoryButton['arguments']['data']['config'] = [
                 'displayAsLink' => true,
@@ -239,13 +237,16 @@ class Editproduct extends AbstractModifier
                         'actionName' => 'toggleModal',
                     ],
                 ],
+                'imports' => [
+                    'childError' => 'product_form.product_form.advanced_inventory_modal.stock_data:error',
+                ],
                 'title' => __('Advanced Inventory'),
                 'provider' => false,
                 'additionalForGroup' => true,
                 'source' => 'product_details',
                 'sortOrder' => 20,
             ];
-            
+
             $targetName = 'product_form.product_form.product-details.stockmovementmodel.stock_movement_listing';
 
             if ($this->helper->isModuleEnabled() && $this->helper->isOutputEnabled() && $this->helper->isAllowed()) {
@@ -305,7 +306,7 @@ class Editproduct extends AbstractModifier
             }
 
             $this->meta = $this->arrayManager->merge(
-                $fieldSetPath . '/children',
+                $fieldsetPath . '/children',
                 $this->meta,
                 ['quantity_and_stock_status_qty' => $container]
             );
