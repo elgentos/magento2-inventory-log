@@ -111,6 +111,9 @@ class AfterImportProductData implements ObserverInterface
                         $data[$newSku['entity_id']] = $stockItem;
                     }
                 }
+                if ($this->registry->registry(InventoryLogHelper::MOVEMENT_DATA)) {
+                    $this->registry->unregister(InventoryLogHelper::MOVEMENT_DATA);
+                }
                 $this->registry->register(InventoryLogHelper::MOVEMENT_DATA, $data);
             }
         }
