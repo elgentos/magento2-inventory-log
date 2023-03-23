@@ -8,6 +8,12 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 
 class GridSourcePrefetchInventoryLogGrid implements \Magento\Framework\Event\ObserverInterface
 {
+    private FilterBuilder $filterBuilder;
+
+    private FilterGroupBuilder $filterGroupBuilder;
+
+    private \Magento\Framework\Registry $registry;
+    
     public function __construct(
         FilterBuilder $filterBuilder,
         FilterGroupBuilder $filterGroupBuilder,
