@@ -83,6 +83,8 @@ class MovementRepository implements MovementRepositoryInterface
      */
     public $productMetadata;
 
+    public CollectionProcessorInterface $collectionProcessor;
+
     /**
      * MovementRepository constructor.
      * @param ResourceMovement $resource
