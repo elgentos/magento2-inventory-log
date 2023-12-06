@@ -178,7 +178,7 @@ class InstallSchema implements InstallSchemaInterface
         switch ($event) {
             case Trigger::EVENT_INSERT:
                 $triggerSql  = "DECLARE	isEnable SMALLINT(5);\n";
-                $triggerSql .= "SELECT 1 INTO isEnable FROM ".$setup->getTable('core_config_data')." WHERE path = 'inventory_log/general/inventory_enabled' and value = 1;\n";
+                $triggerSql .= "SELECT 1 INTO isEnable FROM ".$setup->getTable('core_config_data')." WHERE path = 'cataloginventory/options/inventory_enabled' and value = 1;\n";
                 $triggerSql .= "IF (isEnable = 1) THEN\n";
                 $triggerSql .= "IF (NEW.qty IS NOT NULL) THEN\n";
                 $triggerSql .= "IF (NEW.ukey IS NULL) THEN\n";
@@ -190,7 +190,7 @@ class InstallSchema implements InstallSchemaInterface
             case Trigger::EVENT_UPDATE:
                 $triggerSql  = "DECLARE	isEnable SMALLINT(5);\n";
                 $triggerSql .= "DECLARE qty_movement DECIMAL(12,0);\n";
-                $triggerSql .= "SELECT 1 INTO isEnable FROM ".$setup->getTable('core_config_data')." WHERE path = 'inventory_log/general/inventory_enabled' and value = 1;\n";
+                $triggerSql .= "SELECT 1 INTO isEnable FROM ".$setup->getTable('core_config_data')." WHERE path = 'cataloginventory/options/inventory_enabled' and value = 1;\n";
                 $triggerSql .= "IF (isEnable = 1) THEN\n";
                 $triggerSql .= "IF (NEW.qty IS NOT NULL) THEN\n";
                 $triggerSql .= "IF (NEW.ukey IS NULL OR NEW.ukey = OLD.ukey ) THEN\n";
