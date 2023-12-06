@@ -19,6 +19,7 @@ use Magento\CatalogInventory\Api\StockConfigurationInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\Product\Type as ProductType;
 use Elgentos\InventoryLog\Helper\Data as InventoryLogHelper;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 class RefundOrderInventoryObserver implements ObserverInterface
 {
@@ -87,7 +88,11 @@ class RefundOrderInventoryObserver implements ObserverInterface
             $itemsToUpdate = [];
             foreach ($creditmemo->getAllItems() as $item) {
                 $productId = $item->getProductId();
-                $product = $this->productRepositoryInterface->getById($productId);
+                try {
+                    $product = $this->productRepositoryInterface->getById($productId);
+                } catch (NoSuchEntityException $e) {
+                    continue;
+                }
                 $productType = $product->getTypeId();
                 $qty = $item->getQty();
 
@@ -101,7 +106,7 @@ class RefundOrderInventoryObserver implements ObserverInterface
                             $oldQty = $stockItem->getQty() - $qty;
                             $stockItem->setOldQty($oldQty);
                         }
-                        
+
                         $msg = __('Product restocked after credit memo creation (credit memo: %s)');
                         $message = sprintf(
                             $msg,
