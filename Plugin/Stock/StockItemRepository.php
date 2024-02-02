@@ -108,6 +108,12 @@ class StockItemRepository
                     $message = __('Product restocked after order cancellation');
                 }
                 $this->movementRepository->insertStockMovement($stockItem, $message);
+            } elseif ($movementSection === InventoryLogHelper::WEBAPI_STOCK_UPDATE) {
+                $message = __('Stock updated via WebAPI');
+                $stockAutoFlag = $stockItem->getStockStatusChangedAutomaticallyFlag();
+                if (!$stockAutoFlag || $stockItem->getOldQty() != $stockItem->getQty() || $newProduct == 1) {
+                    $this->movementRepository->insertStockMovement($stockItem, $message, $newProduct);
+                }
             }
             $this->helper->unRegisterAllData();
         }
