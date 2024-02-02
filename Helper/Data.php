@@ -23,6 +23,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     const STOCK_UPDATE = 1;
     const ORDER_CANCEL = 2;
     const CREDIT_MEMO = 3;
+    const WEBAPI_STOCK_UPDATE = 4;
+
     const MOVEMENT_SECTION = "movement_section";
     const NEW_PRODUCT = "new_product";
     const MOVEMENT_DATA = "movement_data";
