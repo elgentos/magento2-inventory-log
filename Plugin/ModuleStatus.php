@@ -15,6 +15,7 @@ namespace Elgentos\InventoryLog\Plugin;
 
 use Magento\Config\Model\ResourceModel\Config as ConfigResource;
 use Elgentos\InventoryLog\Helper\Data as StockMovementHelper;
+use Magento\Store\Model\StoreManagerInterface;
 
 class ModuleStatus
 {
@@ -22,6 +23,12 @@ class ModuleStatus
      * @var ConfigResource
      */
     public $configResource;
+
+
+    /**
+    * @var \Magento\Store\Model\StoreManagerInterface
+    */
+    private StoreManagerInterface $_storeManager;
 
     const EXTENSION_NAME = 'Elgentos_InventoryLog';
 
