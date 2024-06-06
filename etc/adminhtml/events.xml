@@ -3,4 +3,8 @@
     <event name="hyva_grid_source_prefetch_inventory_log_grid">
         <observer name="elgentos_inventorylog_hyva_grid_source_prefetch_inventory_log_grid" instance="\Elgentos\InventoryLog\Observer\Backend\Hyva\GridSourcePrefetchInventoryLogGrid"/>
     </event>
+    
+    <event name="catalog_product_save_before">
+        <observer name="kiwicommerce_inventory" instance="Elgentos\InventoryLog\Observer\SaveInventoryDataObserver"/>
+    </event>
 </config>
