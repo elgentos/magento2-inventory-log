@@ -59,8 +59,9 @@ class StockPlugin
     public function aroundCorrectItemsQty($subject, \Closure $proceed, array $items, $websiteId, $operator)
     {
         if ($this->helper->isModuleEnabled()) {
-            //$proceed($items, $websiteId, $operator);
             $this->movement->correctItemsQty($items, $websiteId, $operator);
+        } else {
+            $proceed($items, $websiteId, $operator);
         }
     }
 }
