@@ -56,7 +56,7 @@ class RevertQuoteInventoryObserver implements ObserverInterface
         \Magento\CatalogInventory\Api\StockRegistryInterface $stockRegistryInterface,
         InventoryLogHelper $inventoryLogHelper,
         ProductRepositoryInterface $productRepositoryInterface,
-        \Elgentos\InventoryLog\Api\MovementRepositoryInterface $movementRepository = null
+        ?\Elgentos\InventoryLog\Api\MovementRepositoryInterface $movementRepository = null
     ) {
         $this->stockRegistryInterface = $stockRegistryInterface;
         $this->movementRepository = $movementRepository

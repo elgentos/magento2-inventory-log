@@ -111,7 +111,7 @@ class Product extends \Magento\CatalogImportExport\Model\Import\Product
         \Elgentos\InventoryLog\Helper\Data $helper,
         array $data = [],
         array $dateAttrCodes = [],
-        CatalogConfig $catalogConfig = null
+        ?CatalogConfig $catalogConfig = null
     ) {
         parent::__construct(
             $jsonHelper,
