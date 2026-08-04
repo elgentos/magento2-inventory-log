@@ -69,8 +69,8 @@ class CheckoutAllSubmitAfter implements ObserverInterface
         \Magento\Framework\Registry $registry,
         ProductRepositoryInterface $productRepositoryInterface,
         \Magento\CatalogInventory\Api\StockRegistryInterface $stockRegistryInterface,
-        \Elgentos\InventoryLog\Model\MovementFactory $movementFactory = null,
-        \Elgentos\InventoryLog\Api\MovementRepositoryInterface $movementRepository = null
+        ?\Elgentos\InventoryLog\Model\MovementFactory $movementFactory = null,
+        ?\Elgentos\InventoryLog\Api\MovementRepositoryInterface $movementRepository = null
     ) {
         $this->registry = $registry;
         $this->helper = $helper;

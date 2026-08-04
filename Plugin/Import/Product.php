@@ -111,7 +111,7 @@ class Product extends \Magento\CatalogImportExport\Model\Import\Product
         \Elgentos\InventoryLog\Helper\Data $helper,
         array $data = [],
         array $dateAttrCodes = [],
-        CatalogConfig $catalogConfig = null
+        ?CatalogConfig $catalogConfig = null
     ) {
         parent::__construct(
             $jsonHelper,
@@ -163,7 +163,7 @@ class Product extends \Magento\CatalogImportExport\Model\Import\Product
     private function reindexProducts($productIdsToReindex = [])
     {
         $indexer = $this->indexerRegistry->get('catalog_product_category');
-        if (is_array($productIdsToReindex) && empty($productIdsToReindex) > 0 && !$indexer->isScheduled()) {
+        if (is_array($productIdsToReindex) && !empty($productIdsToReindex) && !$indexer->isScheduled()) {
             $indexer->reindexList($productIdsToReindex);
         }
     }

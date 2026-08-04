@@ -75,8 +75,8 @@ class ImportProductData implements ObserverInterface
         \Magento\CatalogInventory\Api\StockRegistryInterface $stockRegistryInterface,
         \Elgentos\InventoryLog\Model\ResourceModel\Movement $movementResourceModel,
         \Magento\ImportExport\Model\Import $import,
-        \Elgentos\InventoryLog\Model\MovementFactory $movementFactory = null,
-        \Elgentos\InventoryLog\Api\MovementRepositoryInterface $movementRepository = null
+        ?\Elgentos\InventoryLog\Model\MovementFactory $movementFactory = null,
+        ?\Elgentos\InventoryLog\Api\MovementRepositoryInterface $movementRepository = null
     ) {
         $this->registry = $registry;
         $this->helper = $helper;

@@ -79,8 +79,8 @@ class AfterImportProductData implements ObserverInterface
         \Magento\CatalogInventory\Api\StockRegistryInterface $stockRegistry,
         \Magento\CatalogInventory\Api\StockRegistryInterface $stockRegistryInterface,
         \Elgentos\InventoryLog\Model\ResourceModel\Movement $movementResourceModel,
-        \Elgentos\InventoryLog\Model\MovementFactory $movementFactory = null,
-        \Elgentos\InventoryLog\Api\MovementRepositoryInterface $movementRepository = null
+        ?\Elgentos\InventoryLog\Model\MovementFactory $movementFactory = null,
+        ?\Elgentos\InventoryLog\Api\MovementRepositoryInterface $movementRepository = null
     ) {
         $this->registry = $registry;
         $this->helper = $helper;

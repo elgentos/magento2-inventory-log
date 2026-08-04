@@ -54,7 +54,7 @@ class MovementTest extends \PHPUnit\Framework\TestCase
     /**
      * Initialize Resource Model
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->contextMock = $this->getMockBuilder(Context::class)
             ->disableOriginalConstructor()
