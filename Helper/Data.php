@@ -236,25 +236,4 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $keys = [self::MOVEMENT_SECTION, self::MOVEMENT_DATA, self::NEW_PRODUCT];
         array_walk($keys, [$this->registry, 'unregister']);
     }
-
-    /**
-     * write logfile
-     * @param null $logFileName
-     * @return \Zend\Log\Logger
-     */
-    public function callLogObj($logFileName = null)
-    {
-        if (!$logFileName) {
-            $logFileName = 'custom.log';
-        }
-        if (!$logFileName) {
-            $logFileName = 'custom.log';
-        }
-        $logFileName = '/var/log/'.$logFileName;
-        $writer = new \Zend\Log\Writer\Stream(BP . $logFileName);
-        $logger = new \Zend\Log\Logger();
-        $logger->addWriter($writer);
-        $logger->info('--Log Start--');
-        return $logger;
-    }
 }

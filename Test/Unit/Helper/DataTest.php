@@ -63,7 +63,7 @@ class DataTest extends \PHPUnit\Framework\TestCase
     /**
      * Initialize Data
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->eventManagerMock = $this->getMockBuilder(\Magento\Framework\Event\ManagerInterface::class)
             ->getMockForAbstractClass();

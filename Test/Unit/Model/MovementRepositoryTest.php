@@ -86,6 +86,11 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
     public $movementFactory;
 
     /**
+     * @var \PHPUnit_Framework_MockObject_MockObject|\Magento\Framework\App\ProductMetadataInterface
+     */
+    public $productMetadataMock;
+
+    /**
      * @var \PHPUnit_Framework_MockObject_MockObject|\Elgentos\InventoryLog\Model\MovementRepository
      */
     public $repository;
@@ -93,7 +98,7 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
     /**
      * Initialize repository
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->movementResource = $this->getMockBuilder('Elgentos\InventoryLog\Model\ResourceModel\Movement')
             ->disableOriginalConstructor()
@@ -101,22 +106,22 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
 
         $this->movementFactory = $this->getMockBuilder('Elgentos\InventoryLog\Model\MovementFactory')
             ->disableOriginalConstructor()
-            ->setMethods(['create'])
+            ->addMethods(['create'])
             ->getMock();
 
         $movementDataFactory = $this->getMockBuilder('Elgentos\InventoryLog\Api\Data\MovementInterfaceFactory')
             ->disableOriginalConstructor()
-            ->setMethods(['create'])
+            ->addMethods(['create'])
             ->getMock();
 
         $collectionFactory = $this->getMockBuilder('Elgentos\InventoryLog\Model\ResourceModel\Movement\CollectionFactory')
             ->disableOriginalConstructor()
-            ->setMethods(['create'])
+            ->addMethods(['create'])
             ->getMock();
 
         $movementSearchResultsInterfaceFactory = $this->getMockBuilder('Elgentos\InventoryLog\Api\Data\MovementSearchResultsInterfaceFactory')
             ->disableOriginalConstructor()
-            ->setMethods(['create'])
+            ->addMethods(['create'])
             ->getMock();
 
         $this->dataHelper = $this->getMockBuilder('Magento\Framework\Api\DataObjectHelper')
@@ -151,7 +156,7 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
 
         $this->stockItemMock = $this->getMockBuilder('Magento\CatalogInventory\Api\Data\StockItemInterface')
             ->disableOriginalConstructor()
-            ->setMethods(
+            ->onlyMethods(
                 [
                     'getItemId',
                     'setItemId',
@@ -205,7 +210,12 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
                     'getStockStatusChangedAuto',
                     'setStockStatusChangedAuto',
                     'getExtensionAttributes',
-                    'setExtensionAttributes',
+                    'setExtensionAttributes'
+                ]
+            )
+            // Not declared on StockItemInterface; provided by the module via DataObject magic getters/setters.
+            ->addMethods(
+                [
                     'getOldQty',
                     'setOldQty',
                     'getUkey',
@@ -219,7 +229,7 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
 
         $this->collection = $this->getMockBuilder('Elgentos\InventoryLog\Model\ResourceModel\Movement\Collection')
             ->disableOriginalConstructor()
-            ->setMethods(['addFieldToFilter', 'getSize', 'setCurPage', 'setPageSize', 'load', 'addOrder'])
+            ->onlyMethods(['addFieldToFilter', 'getSize', 'setCurPage', 'setPageSize', 'load', 'addOrder'])
             ->getMock();
 
         $this->movementFactory->expects($this->any())
