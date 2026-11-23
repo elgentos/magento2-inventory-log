@@ -76,17 +76,13 @@ class ModuleStatus
                 }
             }
 
-            if (!empty($deleteParams)) {
-                foreach ($deleteParams as $deleteParamKay => $deleteParamVals) {
-                    if (!empty($deleteParamVals)) {
-                        foreach ($deleteParamVals as $deleteParamVals) {
-                            $this->configResource->deleteConfig(
-                                StockMovementHelper::CONFIG_ENABLE_PATH,
-                                $deleteParamKay,
-                                $deleteParamVals
-                            );
-                        }
-                    }
+            foreach ($deleteParams as $deleteParamKay => $deleteParamVals) {
+                foreach ($deleteParamVals as $deleteParamVals) {
+                    $this->configResource->deleteConfig(
+                        StockMovementHelper::CONFIG_ENABLE_PATH,
+                        $deleteParamKay,
+                        $deleteParamVals
+                    );
                 }
             }
         }

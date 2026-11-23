@@ -13,6 +13,14 @@
  */
 namespace Elgentos\InventoryLog\Test\Unit\Helper;
 
+use Magento\Framework\Event\ManagerInterface;
+use Magento\Framework\UrlInterface;
+use Magento\Framework\App\RequestInterface;
+use Magento\Customer\Model\Session as CustomerSession;
+use Magento\Backend\Model\Auth\Session as AdminSession;
+use Magento\Framework\Registry;
+use Magento\Framework\Authorization\PolicyInterface;
+
 class DataTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -65,14 +73,11 @@ class DataTest extends \PHPUnit\Framework\TestCase
      */
     protected function setUp(): void
     {
-        $this->eventManagerMock = $this->getMockBuilder(\Magento\Framework\Event\ManagerInterface::class)
-            ->getMockForAbstractClass();
+        $this->eventManagerMock = $this->createStub(ManagerInterface::class);
 
-        $this->urlBuilderMock = $this->getMockBuilder(\Magento\Framework\UrlInterface::class)
-            ->getMockForAbstractClass();
+        $this->urlBuilderMock = $this->createStub(UrlInterface::class);
 
-        $this->httpRequestMock = $this->getMockBuilder(\Magento\Framework\App\RequestInterface::class)
-            ->getMockForAbstractClass();
+        $this->httpRequestMock = $this->createStub(RequestInterface::class);
 
         $objectManager = new \Magento\Framework\TestFramework\Unit\Helper\ObjectManager($this);
         $context = $objectManager->getObject(
@@ -84,24 +89,15 @@ class DataTest extends \PHPUnit\Framework\TestCase
             ]
         );
 
-        $this->customerSessionMock = $this->getMockBuilder(\Magento\Customer\Model\Session::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->customerSessionMock = $this->createStub(CustomerSession::class);
 
-        $this->adminSessionMock = $this->getMockBuilder(\Magento\Backend\Model\Auth\Session::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->adminSessionMock = $this->createStub(AdminSession::class);
 
-        $this->registryMock = $this->getMockBuilder(\Magento\Framework\Registry::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->registryMock = $this->createStub(Registry::class);
 
-        $this->policyMock = $this->getMockBuilder(\Magento\Framework\Authorization\PolicyInterface::class)
-            ->getMockForAbstractClass();
+        $this->policyMock = $this->createStub(PolicyInterface::class);
 
-        $this->authSessionMock = $this->getMockBuilder(\Magento\Backend\Model\Auth\Session::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->authSessionMock = $this->createStub(AdminSession::class);
 
         $this->object = $objectManager->getObject(
             \Elgentos\InventoryLog\Helper\Data::class,
@@ -116,9 +112,6 @@ class DataTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @test
-     */
     public function testGenerateRandomString()
     {
         $length = 5;
