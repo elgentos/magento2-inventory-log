@@ -13,7 +13,26 @@
  */
 namespace Elgentos\InventoryLog\Test\Unit\Model;
 
+use Elgentos\InventoryLog\Model\MovementFactory;
+use Elgentos\InventoryLog\Api\Data\MovementInterfaceFactory;
+use Elgentos\InventoryLog\Model\ResourceModel\Movement\CollectionFactory;
+use Elgentos\InventoryLog\Api\Data\MovementSearchResultsInterfaceFactory;
+use Magento\Framework\Api\DataObjectHelper;
+use Magento\Framework\Reflection\DataObjectProcessor;
+use Magento\Store\Model\StoreManagerInterface;
+use Elgentos\InventoryLog\Helper\Data as MovementHelper;
+use Magento\Store\Api\Data\StoreInterface;
+use Elgentos\InventoryLog\Model\Movement;
+use Elgentos\InventoryLog\Api\Data\MovementInterface;
+use Elgentos\InventoryLog\Api\Data\MovementSearchResultsInterface;
+use Elgentos\InventoryLog\Model\ResourceModel\Movement\Collection;
+use Magento\Framework\App\ProductMetadataInterface;
 use Elgentos\InventoryLog\Model\MovementRepository;
+use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
+use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\CouldNotDeleteException;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Elgentos\InventoryLog\Model\ResourceModel\Movement as MovementResource;
 
 /**
  * Test for Elgentos\InventoryLog\Model\MovementRepository
@@ -76,11 +95,6 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
     public $stockItemMock;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\Elgentos\InventoryLog\Model\MovementRepository
-     */
-    public $movementRepositoryMock;
-
-    /**
      * @var \PHPUnit_Framework_MockObject_MockObject|\Elgentos\InventoryLog\Model\MovementFactory
      */
     public $movementFactory;
@@ -100,164 +114,55 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
      */
     protected function setUp(): void
     {
-        $this->movementResource = $this->getMockBuilder('Elgentos\InventoryLog\Model\ResourceModel\Movement')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->movementResource = $this->createStub(MovementResource::class);
 
-        $this->movementFactory = $this->getMockBuilder('Elgentos\InventoryLog\Model\MovementFactory')
-            ->disableOriginalConstructor()
-            ->addMethods(['create'])
-            ->getMock();
+        $this->movementFactory = $this->createStub(MovementFactory::class);
 
-        $movementDataFactory = $this->getMockBuilder('Elgentos\InventoryLog\Api\Data\MovementInterfaceFactory')
-            ->disableOriginalConstructor()
-            ->addMethods(['create'])
-            ->getMock();
+        $movementDataFactory = $this->createStub(MovementInterfaceFactory::class);
 
-        $collectionFactory = $this->getMockBuilder('Elgentos\InventoryLog\Model\ResourceModel\Movement\CollectionFactory')
-            ->disableOriginalConstructor()
-            ->addMethods(['create'])
-            ->getMock();
+        $collectionFactory = $this->createStub(CollectionFactory::class);
 
-        $movementSearchResultsInterfaceFactory = $this->getMockBuilder('Elgentos\InventoryLog\Api\Data\MovementSearchResultsInterfaceFactory')
-            ->disableOriginalConstructor()
-            ->addMethods(['create'])
-            ->getMock();
+        $movementSearchResultsInterfaceFactory = $this->createStub(MovementSearchResultsInterfaceFactory::class);
 
-        $this->dataHelper = $this->getMockBuilder('Magento\Framework\Api\DataObjectHelper')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->dataHelper = $this->createStub(DataObjectHelper::class);
 
-        $this->dataObjectProcessor = $this->getMockBuilder('Magento\Framework\Reflection\DataObjectProcessor')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->dataObjectProcessor = $this->createStub(DataObjectProcessor::class);
 
-        $this->storeManager = $this->getMockBuilder('Magento\Store\Model\StoreManagerInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->storeManager = $this->createStub(StoreManagerInterface::class);
 
-        $this->movementDataHelper = $this->getMockBuilder('Elgentos\InventoryLog\Helper\Data')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->movementDataHelper = $this->createStub(MovementHelper::class);
 
-        $store = $this->getMockBuilder('\Magento\Store\Api\Data\StoreInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $store->expects($this->any())->method('getId')->willReturn(0);
-        $this->storeManager->expects($this->any())->method('getStore')->willReturn($store);
+        $store = $this->createStub(StoreInterface::class);
+        $store->method('getId')->willReturn(0);
+        $this->storeManager->method('getStore')->willReturn($store);
 
-        $this->movement = $this->getMockBuilder('Elgentos\InventoryLog\Model\Movement')
-                            ->disableOriginalConstructor()
-                            ->getMock();
-        
-        $this->movementData = $this->getMockBuilder('Elgentos\InventoryLog\Api\Data\MovementInterface')
-                                ->disableOriginalConstructor()
-                                ->getMock();
+        $this->movement = $this->createStub(Movement::class);
 
-        $this->stockItemMock = $this->getMockBuilder('Magento\CatalogInventory\Api\Data\StockItemInterface')
-            ->disableOriginalConstructor()
-            ->onlyMethods(
-                [
-                    'getItemId',
-                    'setItemId',
-                    'getProductId',
-                    'setProductId',
-                    'getStockId',
-                    'setStockId',
-                    'getQty',
-                    'setQty',
-                    'getIsInStock',
-                    'setIsInStock',
-                    'getIsQtyDecimal',
-                    'setIsQtyDecimal',
-                    'getShowDefaultNotificationMessage',
-                    'getUseConfigMinQty',
-                    'setUseConfigMinQty',
-                    'getMinQty',
-                    'setMinQty',
-                    'getUseConfigMinSaleQty',
-                    'setUseConfigMinSaleQty',
-                    'getMinSaleQty',
-                    'setMinSaleQty',
-                    'getUseConfigMaxSaleQty',
-                    'setUseConfigMaxSaleQty',
-                    'getMaxSaleQty',
-                    'setMaxSaleQty',
-                    'getUseConfigBackorders',
-                    'setUseConfigBackorders',
-                    'getBackorders',
-                    'setBackorders',
-                    'getUseConfigNotifyStockQty',
-                    'setUseConfigNotifyStockQty',
-                    'getNotifyStockQty',
-                    'setNotifyStockQty',
-                    'getUseConfigQtyIncrements',
-                    'setUseConfigQtyIncrements',
-                    'getQtyIncrements',
-                    'setQtyIncrements',
-                    'getUseConfigEnableQtyInc',
-                    'setUseConfigEnableQtyInc',
-                    'getEnableQtyIncrements',
-                    'setEnableQtyIncrements',
-                    'getUseConfigManageStock',
-                    'setUseConfigManageStock',
-                    'getManageStock',
-                    'setManageStock',
-                    'getLowStockDate',
-                    'setLowStockDate',
-                    'getIsDecimalDivided',
-                    'setIsDecimalDivided',
-                    'getStockStatusChangedAuto',
-                    'setStockStatusChangedAuto',
-                    'getExtensionAttributes',
-                    'setExtensionAttributes'
-                ]
-            )
-            // Not declared on StockItemInterface; provided by the module via DataObject magic getters/setters.
-            ->addMethods(
-                [
-                    'getOldQty',
-                    'setOldQty',
-                    'getUkey',
-                    'setUkey'
-                ]
-            )
-            ->getMock();
+        $this->movementData = $this->createStub(MovementInterface::class);
 
-        $this->movementSearchResult = $this->getMockBuilder('Elgentos\InventoryLog\Api\Data\MovementSearchResultsInterface')
-            ->getMock();
+        $this->stockItemMock = $this->createStub(StockItem::class);
 
-        $this->collection = $this->getMockBuilder('Elgentos\InventoryLog\Model\ResourceModel\Movement\Collection')
-            ->disableOriginalConstructor()
-            ->onlyMethods(['addFieldToFilter', 'getSize', 'setCurPage', 'setPageSize', 'load', 'addOrder'])
-            ->getMock();
+        $this->movementSearchResult = $this->createStub(MovementSearchResultsInterface::class);
 
-        $this->movementFactory->expects($this->any())
+        $this->collection = $this->createStub(Collection::class);
+
+        $this->movementFactory
             ->method('create')
             ->willReturn($this->movement);
 
-        $movementDataFactory->expects($this->any())
+        $movementDataFactory
             ->method('create')
             ->willReturn($this->movementData);
 
-        $collectionFactory->expects($this->any())
-        ->method('create')
-        ->willReturn($this->collection);
+        $collectionFactory
+            ->method('create')
+            ->willReturn($this->collection);
 
-        $movementSearchResultsInterfaceFactory->expects($this->any())
+        $movementSearchResultsInterfaceFactory
             ->method('create')
             ->willReturn($this->movementSearchResult);
 
-        $this->dataHelper = $this->getMockBuilder('Magento\Framework\Api\DataObjectHelper')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->movementRepositoryMock = $this->getMockBuilder('Elgentos\InventoryLog\Model\MovementRepository')
-                                        ->disableOriginalConstructor()
-                                        ->getMock();
-
-        $this->productMetadataMock = $this->getMockBuilder('Magento\Framework\App\ProductMetadataInterface')
-            ->getMock();
+        $this->productMetadataMock = $this->createStub(ProductMetadataInterface::class);
 
         $this->repository = new MovementRepository(
             $this->movementResource,
@@ -269,15 +174,15 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
             $this->dataObjectProcessor,
             $this->storeManager,
             $this->movementDataHelper,
-            $this->productMetadataMock
+            $this->productMetadataMock,
+            $this->createStub(CollectionProcessorInterface::class)
         );
     }
 
-    /**
-     * @test
-     */
     public function testSave()
     {
+        $this->movementResource = $this->createMock(MovementResource::class);
+        $this->repository->resource = $this->movementResource;
         $this->movementResource->expects($this->once())
             ->method('save')
             ->with($this->movement)
@@ -285,19 +190,18 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($this->movement, $this->repository->save($this->movement));
     }
 
-    /**
-     * @test
-     */
     public function testDeleteById()
     {
+        $this->movementResource = $this->createMock(MovementResource::class);
+        $this->repository->resource = $this->movementResource;
         $movementId = '123';
 
-        $this->movement->expects($this->once())
+        $this->movement
             ->method('getId')
             ->willReturn(true);
-        $this->movement->expects($this->once())
+        $this->movementResource->expects($this->once())
             ->method('load')
-            ->with($movementId)
+            ->with($this->movement, $movementId)
             ->willReturnSelf();
         $this->movementResource->expects($this->once())
             ->method('delete')
@@ -307,13 +211,11 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($this->repository->deleteById($movementId));
     }
 
-    /**
-     * @test
-     *
-     * @expectedException \Magento\Framework\Exception\CouldNotSaveException
-     */
     public function testSaveException()
     {
+        $this->movementResource = $this->createMock(MovementResource::class);
+        $this->repository->resource = $this->movementResource;
+        $this->expectException(CouldNotSaveException::class);
         $this->movementResource->expects($this->once())
             ->method('save')
             ->with($this->movement)
@@ -321,13 +223,11 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
         $this->repository->save($this->movement);
     }
 
-    /**
-     * @test
-     *
-     * @expectedException \Magento\Framework\Exception\CouldNotDeleteException
-     */
     public function testDeleteException()
     {
+        $this->movementResource = $this->createMock(MovementResource::class);
+        $this->repository->resource = $this->movementResource;
+        $this->expectException(CouldNotDeleteException::class);
         $this->movementResource->expects($this->once())
             ->method('delete')
             ->with($this->movement)
@@ -335,46 +235,34 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
         $this->repository->delete($this->movement);
     }
 
-    /**
-     * @test
-     *
-     * @expectedException \Magento\Framework\Exception\NoSuchEntityException
-     */
     public function testGetByIdException()
     {
+        $this->movementResource = $this->createMock(MovementResource::class);
+        $this->repository->resource = $this->movementResource;
+        $this->expectException(NoSuchEntityException::class);
         $movementId = '123';
 
-        $this->movement->expects($this->once())
+        $this->movement
             ->method('getId')
             ->willReturn(false);
-        $this->movement->expects($this->once())
+        $this->movementResource->expects($this->once())
             ->method('load')
-            ->with($movementId)
+            ->with($this->movement, $movementId)
             ->willReturnSelf();
         $this->repository->getById($movementId);
     }
 
-    /**
-     * @test
-     */
     public function testInsertStockMovement()
     {
         $message = 'Mock Test';
         $isNew = 0;
-        $this->movementRepositoryMock->expects($this->any())
-            ->method('insertStockMovement')
-            ->with($this->stockItemMock, $message, $isNew)
-            ->willReturn($this->repository);
-
-        //$this->assertEquals($this->repository, $this->repository->insertStockMovement($this->stockItemMock, $message, $isNew));
         $this->assertNull($this->repository->insertStockMovement($this->stockItemMock, $message, $isNew));
     }
 
-    /**
-     * @test
-     */
     public function testInsertStockMovementWithData()
     {
+        $this->movementResource = $this->createMock(MovementResource::class);
+        $this->repository->resource = $this->movementResource;
         $itemId = '10';
         $productId = '15';
         $isInStock = 1;
@@ -384,16 +272,17 @@ class MovementRepositoryTest extends \PHPUnit\Framework\TestCase
         $message = 'Mock Test';
         $isNew = 0;
 
-        $this->movementDataHelper->expects($this->once())
+        $this->movementResource->expects($this->once())->method('save')->with($this->movement);
+        $this->movementDataHelper
             ->method('isModuleEnabled')
             ->willReturn(true);
 
-        $this->stockItemMock->expects($this->once())->method('getOldQty')->willReturn($oldQty);
-        $this->stockItemMock->expects($this->once())->method('getQty')->willReturn($qty);
-        $this->stockItemMock->expects($this->once())->method('getItemId')->willReturn($itemId);
-        $this->stockItemMock->expects($this->once())->method('getProductId')->willReturn($productId);
-        $this->stockItemMock->expects($this->once())->method('getIsInStock')->willReturn($isInStock);
-        $this->stockItemMock->expects($this->once())->method('getUkey')->willReturn($uKey);
+        $this->stockItemMock->method('getOldQty')->willReturn($oldQty);
+        $this->stockItemMock->method('getQty')->willReturn($qty);
+        $this->stockItemMock->method('getItemId')->willReturn($itemId);
+        $this->stockItemMock->method('getProductId')->willReturn($productId);
+        $this->stockItemMock->method('getIsInStock')->willReturn($isInStock);
+        $this->stockItemMock->method('getUkey')->willReturn($uKey);
 
         $this->assertEquals(
             $this->repository,

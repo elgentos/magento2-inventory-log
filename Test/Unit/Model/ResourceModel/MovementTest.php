@@ -13,100 +13,55 @@
  */
 namespace Elgentos\InventoryLog\Test\Unit\Model\ResourceModel;
 
-use Magento\Framework\Model\ResourceModel\Db\Context;
 use Elgentos\InventoryLog\Model\ResourceModel\Movement as MovementResourceModel;
-use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
-use Magento\Framework\EntityManager\EntityManager;
-use Magento\Framework\App\ResourceConnection;
+use Magento\Framework\DB\Adapter\AdapterInterface;
+use Magento\Framework\DB\Select;
+use PHPUnit\Framework\TestCase;
 
-class MovementTest extends \PHPUnit\Framework\TestCase
+class MovementTest extends TestCase
 {
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\Magento\Framework\Model\ResourceModel\Db\Context
-     */
-    public $contextMock;
-
-    /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\Elgentos\InventoryLog\Helper\Data
-     */
-    public $movementDataHelper;
-
-    /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\Elgentos\InventoryLog\Model\ResourceModel\Movement
-     */
-    public $model;
-
-    /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\Magento\Framework\EntityManager\EntityManager
-     */
-    public $entityManagerMock;
-
-    /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\Magento\Framework\App\ResourceConnection
-     */
-    public $resourcesMock;
-
-    /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\Elgentos\InventoryLog\Model\ResourceModel\Movement
-     */
-    public $movementResourceMock;
-
-    /**
-     * Initialize Resource Model
-     */
-    protected function setUp(): void
-    {
-        $this->contextMock = $this->getMockBuilder(Context::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->movementDataHelper = $this->getMockBuilder('Elgentos\InventoryLog\Helper\Data')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->entityManagerMock = $this->getMockBuilder(EntityManager::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->movementResourceMock = $this->getMockBuilder(MovementResourceModel::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->resourcesMock = $this->getMockBuilder(ResourceConnection::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->contextMock->expects($this->once())
-            ->method('getResources')
-            ->willReturn($this->resourcesMock);
-
-        $this->model = (new ObjectManager($this))->getObject(MovementResourceModel::class, [
-            'context' => $this->contextMock,
-            'helper' => $this->movementDataHelper
-        ]);
-    }
-
-    /**
-     * @test
+     * Read stock quantity by item ID.
      */
     public function testGetStockQty()
     {
-        $stockId = '123';
-        $this->movementResourceMock->expects($this->any())
-            ->method('getStockQty')
-            ->with($stockId)
-            ->willReturn($stockId);
+        $this->assertStockQuantity('getStockQty', 'item_id = ?');
     }
 
     /**
-     * @test
+     * Read stock quantity by product ID.
      */
     public function testGetStockItemByProduct()
     {
-        $productId = '123';
-        $this->movementResourceMock->expects($this->any())
-            ->method('getStockItemByProduct')
-            ->with($productId)
-            ->willReturn($productId);
+        $this->assertStockQuantity('getStockItemByProduct', 'product_id = ?');
+    }
+
+    /**
+     * Assert the stock lookup uses the requested ID and returns the database value.
+     *
+     * @param string $method
+     * @param string $condition
+     */
+    private function assertStockQuantity($method, $condition)
+    {
+        $select = $this->createMock(Select::class);
+        $select->expects($this->once())->method('from')
+            ->with('cataloginventory_stock_item', 'qty')->willReturnSelf();
+        $select->expects($this->once())->method('where')
+            ->with($condition, 123)->willReturnSelf();
+
+        $adapter = $this->createMock(AdapterInterface::class);
+        $adapter->expects($this->once())->method('select')->willReturn($select);
+        $adapter->expects($this->once())->method('fetchOne')->with($select)->willReturn('12.0000');
+
+        $resource = $this->getMockBuilder(MovementResourceModel::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['getConnection', 'getTable'])
+            ->getMock();
+        $resource->expects($this->once())->method('getConnection')->willReturn($adapter);
+        $resource->expects($this->exactly(2))->method('getTable')
+            ->with('cataloginventory_stock_item')->willReturnArgument(0);
+
+        $this->assertSame('12.0000', $resource->$method('123'));
     }
 }
