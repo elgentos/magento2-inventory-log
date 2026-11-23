@@ -19,7 +19,6 @@ use Magento\Framework\Model\ResourceModel\Db\ObjectRelationProcessor;
 use Magento\Framework\Model\ResourceModel\Db\TransactionManagerInterface;
 use Magento\ImportExport\Model\Import\ErrorProcessing\ProcessingErrorAggregatorInterface;
 use Magento\Framework\Stdlib\DateTime;
-use Magento\Catalog\Model\Config as CatalogConfig;
 
 class Product extends \Magento\CatalogImportExport\Model\Import\Product
 {
@@ -67,9 +66,6 @@ class Product extends \Magento\CatalogImportExport\Model\Import\Product
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      * @param \Magento\Catalog\Model\Product\Url $productUrl
      * @param InventoryLogHelper $helper
-     * @param array $data
-     * @param array $dateAttrCodes
-     * @param CatalogConfig|null $catalogConfig
      */
     public function __construct(
         \Magento\Framework\Json\Helper\Data $jsonHelper,
@@ -108,10 +104,7 @@ class Product extends \Magento\CatalogImportExport\Model\Import\Product
         \Magento\CatalogImportExport\Model\Import\Product\TaxClassProcessor $taxClassProcessor,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Catalog\Model\Product\Url $productUrl,
-        \Elgentos\InventoryLog\Helper\Data $helper,
-        array $data = [],
-        array $dateAttrCodes = [],
-        ?CatalogConfig $catalogConfig = null
+        \Elgentos\InventoryLog\Helper\Data $helper
     ) {
         parent::__construct(
             $jsonHelper,
