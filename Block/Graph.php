@@ -7,7 +7,17 @@ use Elgentos\InventoryLog\Model\ResourceModel\Movement\CollectionFactory as Move
 use Magento\Backend\Block\Context;
 use Magento\Catalog\Model\ProductRepository;
 
-class Graph extends \Magento\Backend\Block\Template {
+class Graph extends \Magento\Backend\Block\Template
+{
+    /** @var ProductRepository */
+    public $productRepository;
+
+    /** @var MovementCollectionFactory */
+    public $movementCollectionFactory;
+
+    /** @var mixed */
+    public $productId;
+
     /**
      * Constructor
      *
