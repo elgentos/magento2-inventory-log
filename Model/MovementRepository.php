@@ -145,7 +145,7 @@ class MovementRepository implements MovementRepositoryInterface
     /**
      * @param \Magento\CatalogInventory\Api\Data\StockItemInterface $stockItem
      * @param string $message
-     * @return $this|bool
+     * @return $this|bool|null
      */
     public function insertStockMovement(
         \Magento\CatalogInventory\Api\Data\StockItemInterface $stockItem,
@@ -201,7 +201,7 @@ class MovementRepository implements MovementRepositoryInterface
     public function getById($movementId)
     {
         $movement = $this->movementFactory->create();
-        $movement->load($movementId);
+        $this->resource->load($movement, $movementId);
         if (!$movement->getId()) {
             throw new NoSuchEntityException(__('Movement with id "%1" does not exist.', $movementId));
         }
